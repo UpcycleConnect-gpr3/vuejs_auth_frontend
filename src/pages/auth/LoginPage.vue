@@ -1,23 +1,21 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import api from '@/services/api.ts'
+import type { AuthCredentials } from '@/types/auth.ts'
+import { useAuthStore } from '@/stores/auth.ts'
 
 const showPassword = ref(false)
+const authStore = useAuthStore()
 
-const form = reactive({
+const form = reactive<AuthCredentials>({
   email: '',
   password: '',
-  rememberMe: false,
 })
 
 async function handleLogin() {
   console.log('form:', form)
-  try {
-    const response = await api.post('/login/', form)
-    console.log('Response:', response.data)
-  } catch (error) {
-    console.error('Error:', error)
-  }
+
+  await authStore.login(form)
 }
 </script>
 
