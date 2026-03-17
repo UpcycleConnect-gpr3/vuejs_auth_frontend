@@ -33,7 +33,7 @@ const router = createRouter({
       component: AccountPage,
     },
     {
-      path: '/setting/team',
+      path: '/setting/teams',
       component: TeamPage,
     },
     {
