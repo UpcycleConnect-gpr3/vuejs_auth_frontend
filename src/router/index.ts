@@ -6,6 +6,7 @@ import {
   A2FCodePage,
   TeamPage,
   NotificationPage,
+  ProfilePage,
 } from '@/pages'
 import BillingPage from '@/pages/Setting/BillingPage.vue'
 
@@ -39,6 +40,10 @@ const router = createRouter({
     {
       path: '/setting/notifications',
       component: NotificationPage,
+    },
+    {
+      path: '/setting/profile',
+      component: ProfilePage,
     },
   ],
 })
