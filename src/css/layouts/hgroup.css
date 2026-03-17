@@ -1,0 +1,6 @@
+hgroup {
+    display: flex;
+    flex-direction: var(--hgroup-flex-direction);
+    align-items: var(--hgroup-align-items);
+    gap: var(--hgroup-gap);
+}

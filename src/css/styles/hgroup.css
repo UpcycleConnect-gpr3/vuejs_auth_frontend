@@ -1,0 +1,9 @@
+hgroup {
+    --hgroup-flex-direction: column;
+    --hgroup-align-items: left;
+    --hgroup-gap: var(--gap-medium);
+
+    &.inline {
+        --hgroup-flex-direction: row;
+    }
+}
