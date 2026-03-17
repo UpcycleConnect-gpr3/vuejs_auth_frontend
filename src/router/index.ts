@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { ForgotPage, LoginPage, SettingPage, AccountPage } from '@/pages'
-import A2FCodePage from '@/pages/auth/A2FCodePage.vue'
+import { ForgotPage, LoginPage, AccountPage, A2FCodePage } from '@/pages'
+import BillingPage from '@/pages/Setting/BillingPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,8 +18,8 @@ const router = createRouter({
       component: A2FCodePage,
     },
     {
-      path: '/setting',
-      component: SettingPage,
+      path: '/setting/billing',
+      component: BillingPage,
     },
     {
       path: '/setting/account',
