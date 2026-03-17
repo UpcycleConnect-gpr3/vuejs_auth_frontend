@@ -26,23 +26,23 @@ const router = createRouter({
       component: A2FCodePage,
     },
     {
-      path: '/setting/billing',
+      path: '/settings/billing',
       component: BillingPage,
     },
     {
-      path: '/setting/account',
+      path: '/settings/account',
       component: AccountPage,
     },
     {
-      path: '/setting/teams',
+      path: '/settings/teams',
       component: TeamPage,
     },
     {
-      path: '/setting/notifications',
+      path: '/settings/notifications',
       component: NotificationPage,
     },
     {
-      path: '/setting/profile',
+      path: '/settings/profile',
       component: ProfilePage,
     },
   ],
