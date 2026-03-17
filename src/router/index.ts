@@ -14,7 +14,7 @@ const router = createRouter({
       component: ForgotPage,
     },
     {
-      path: '/auth/A2F-code',
+      path: '/auth/a2f-code',
       component: A2FCodePage,
     },
   ],
