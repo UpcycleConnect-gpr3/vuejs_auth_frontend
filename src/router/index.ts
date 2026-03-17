@@ -4,11 +4,11 @@ import {
   LoginPage,
   AccountPage,
   A2FCodePage,
-  TeamPage,
   NotificationPage,
   ProfilePage,
+  OrganizationPage,
+  BillingPage,
 } from '@/pages'
-import BillingPage from '@/pages/Setting/BillingPage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,7 +35,7 @@ const router = createRouter({
     },
     {
       path: '/settings/teams',
-      component: TeamPage,
+      component: OrganizationPage,
     },
     {
       path: '/settings/notifications',

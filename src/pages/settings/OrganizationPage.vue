@@ -37,7 +37,7 @@
           <li
             class="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-blue-700 hover:text-white"
           >
-            Teams
+            Organization
           </li>
           <li
             class="cursor-pointer px-3 py-2 text-sm text-slate-600 hover:bg-blue-700 hover:text-white"
@@ -67,7 +67,7 @@
           <li
             class="mt-5 cursor-pointer border-l-2 border-l-blue-700 px-2 py-2 font-semibold text-blue-700 transition hover:border-l-blue-700 hover:text-blue-700"
           >
-            <router-link to="teams">Teams</router-link>
+            <router-link to="teams">Organization</router-link>
           </li>
           <li
             class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"
