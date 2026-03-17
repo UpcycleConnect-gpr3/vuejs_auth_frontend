@@ -1,0 +1,164 @@
+button {
+    --button-width: var(--width-component);
+
+    --button-gap: var(--gap-small);
+
+    --button-padding-top: var(--padding-small);
+    --button-padding-right: var(--padding-medium);
+    --button-padding-bottom: var(--padding-small);
+    --button-padding-left: var(--padding-medium);
+
+    --button-border-radius: var(--rounded-component);
+
+    --button-font-weight: var(--font-weight-component);
+    --button-font-family: var(--font-family-component);
+
+    --button-letter-spacing: 0px;
+    --button-text-transform: none;
+    --button-text-align: center;
+
+    --button-border-width: var(--border-width-component);
+    --button-border-style: var(--border-style-component);
+
+    --button-opacity: var(--opacity-component);
+
+    --button-disabled-bg-color: var(--disable-background-color);
+    --button-disabled-text-color: var(--disable-foreground-color);
+    --button-disabled-border-color: var(--disable-border-color);
+    --button-disabled-opacity: var(--disable-opacity-component);
+    --button-disabled-box-shadow: none;
+
+    /* --button-focus-outline-width: 5px; */
+    --button-focus-outline-style: var(--outline-style-component);
+    --button-focus-outline-offset: var(--outline-offset-component);
+    --button-focus-box-shadow: none;
+
+    --button-color-transition-duration: 0.4s;
+    --button-color-transition-timing-function: ease-out;
+
+    --button-box-shadow-transition-duration: 0.4s;
+    --button-box-shadow-transition-timing-function: ease;
+
+    --button-outline-transition-duration: 0.4s;
+    --button-outline-transition-timing-function: ease;
+
+    /* Select - nom de variant du couleur du bouton... */
+    &.primary {
+        --button-bg-color: var(--primary-color);
+        --button-text-color: var(--primary-foreground-color);
+        --button-border-color: var(--primary-color);
+
+        --button-hover-bg-color: oklch(from var(--primary-color) l c h / 0.2);
+        --button-hover-text-color: var(--primary-foreground-color);
+        --button-hover-border-color: var(--primary-color);
+
+        --button-active-bg-color: var(--primary-color);
+        --button-active-text-color: var(--primary-foreground-color);
+
+        --button-focus-outline-color: var(--primary-color);
+        --button-active-outline-color: oklch(from var(--primary-color) l c h / 0.2);
+    }
+
+    &.secondary {
+        --button-bg-color: var(--secondary-color);
+        --button-text-color: var(--secondary-foreground-color);
+        --button-border-color: var(--secondary-color);
+
+        --button-hover-bg-color: oklch(from var(--secondary-color) l c h / 0.2);
+        --button-hover-text-color: var(--secondary-color);
+        --button-hover-border-color: var(--secondary-color);
+
+        --button-active-bg-color: var(--secondary-color);
+        --button-active-text-color: var(--secondary-foreground-color);
+
+        --button-focus-outline-color: var(--secondary-color);
+        --button-active-outline-color: oklch(from var(--secondary-color) l c h / 0.2);
+    }
+
+    &.tertiary {
+        --button-bg-color: var(--tertiary-color);
+        --button-text-color: var(--tertiary-foreground-color);
+        --button-border-color: var(--tertiary-color);
+
+        --button-hover-bg-color: oklch(from var(--tertiary-color) l c h / 0.2);
+        --button-hover-text-color: var(--tertiary-foreground-color);
+        --button-hover-border-color: var(--tertiary-color);
+
+        --button-active-bg-color: var(--tertiary-color);
+        --button-active-text-color: var(--tertiary-foreground-color);
+
+        --button-focus-outline-color: var(--tertiary-color);
+        --button-active-outline-color: oklch(from var(--tertiary-color) l c h / 0.2);
+    }
+
+    &.outline {
+        --button-bg-color: transparent;
+        --button-text-color: none;
+        --button-border-color: var(--tertiary-color);
+
+        --button-border-width: 2px;
+        --button-border-style: solid;
+
+        --button-hover-bg-color: oklch(from var(--tertiary-color) l c h / 0.2);
+        --button-hover-text-color: var(--primary-color);
+        --button-hover-border-color: var(--tertiary-color);
+
+        --button-active-bg-color: var(--primary-foreground-color);
+        --button-active-text-color: var(--primary-color);
+
+        --button-focus-outline-color: var(--primary-color);
+        --button-active-outline-color: oklch(from var(--primary-color) l c h / 0.2);
+    }
+
+    &.ghost {
+        --button-bg-color: transparent;
+        --button-text-color: none;
+
+        --button-hover-bg-color: oklch(from var(--primary-color) l c h);
+        --button-hover-text-color: var(--primary-foreground-color);
+        --button-hover-border-color: var(--primary-color);
+
+        --button-active-bg-color: var(--primary-color);
+        --button-active-text-color: var(--primary-foreground-color);
+
+        --button-focus-outline-color: var(--primary-color);
+        --button-active-outline-color: oklch(from var(--primary-color) l c h / 0.2);
+    }
+
+    &.small {
+        --button-height: var(--height-small);
+        --button-font-size: var(--font-size-small);
+        --button-focus-outline-width: var(--outline-width-small);
+    }
+
+    &.medium {
+        --button-height: var(--height-medium);
+        --button-font-size: var(--font-size-medium);
+        --button-focus-outline-width: var(--outline-width-medium);
+    }
+
+    &.large {
+        --button-height: var(--height-large);
+        --button-font-size: var(--font-size-large);
+        --button-focus-outline-width: var(--outline-width-large);
+    }
+
+    &.small-square {
+        --button-height: var(--height-small);
+        --button-width: var(--height-small);
+        --button-font-size: var(--font-size-small);
+        --button-focus-outline-width: var(--outline-width-small);
+    }
+
+    &.medium-square {
+        --button-height: var(--height-medium);
+        --button-width: var(--height-medium);
+        --button-font-size: var(--font-size-medium);
+        --button-focus-outline-width: var(--outline-width-medium);
+    }
+
+    &.text-center {
+        /* --button-width: 100%; */
+        --button-text-align: center;
+    }
+}
