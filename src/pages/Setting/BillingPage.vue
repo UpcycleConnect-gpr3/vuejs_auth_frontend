@@ -56,27 +56,27 @@
           <li
             class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"
           >
-            Accounts
+            <router-link to="accounts">Accounts</router-link>
           </li>
           <li
             class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"
           >
-            Profile
+            <router-link to="profile">Profile</router-link>
           </li>
           <li
             class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"
           >
-            Teams
+            <router-link to="teams">Teams</router-link>
           </li>
           <li
             class="mt-5 cursor-pointer border-l-2 border-l-blue-700 px-2 py-2 font-semibold text-blue-700 transition hover:border-l-blue-700 hover:text-blue-700"
           >
-            Billing
+            <router-link to="billing">Billing</router-link>
           </li>
           <li
             class="mt-5 cursor-pointer border-l-2 border-transparent px-2 py-2 font-semibold transition hover:border-l-blue-700 hover:text-blue-700"
           >
-            Notifications
+            <router-link to="notifications">Notifications</router-link>
           </li>
         </ul>
       </div>
