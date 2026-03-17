@@ -1,5 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { ForgotPage, LoginPage, AccountPage, A2FCodePage, TeamPage } from '@/pages'
+import {
+  ForgotPage,
+  LoginPage,
+  AccountPage,
+  A2FCodePage,
+  TeamPage,
+  NotificationPage,
+} from '@/pages'
 import BillingPage from '@/pages/Setting/BillingPage.vue'
 
 const router = createRouter({
@@ -28,6 +35,10 @@ const router = createRouter({
     {
       path: '/setting/team',
       component: TeamPage,
+    },
+    {
+      path: '/setting/notifications',
+      component: NotificationPage,
     },
   ],
 })
