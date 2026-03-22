@@ -2,8 +2,9 @@ header {
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: var(--header-align-items);
     justify-content: space-between;
     gap: var(--header-gap);
     padding: var(--header-padding);
+
 }

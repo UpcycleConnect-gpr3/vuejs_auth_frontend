@@ -1,7 +1,4 @@
 header {
-    --header-flex-direction: row;
-    --header-align-items: center;
-    --header-justify-content: space-between;
     --header-gap: ;
     --header-padding: ;
 
