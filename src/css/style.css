@@ -72,3 +72,18 @@ div#app {
 .layout-full-width {
     width: 100vw;
 }
+
+.container {
+    margin-inline: auto;
+
+    @media (min-width: 1280px) {
+        max-width: 80rem;
+
+        /*plus petit pour le mac 13'*/
+    }
+    @media (min-width: 1536px) {
+        max-width: 96rem;
+    }
+
+
+}
