@@ -1,6 +1,6 @@
 header {
-    --header-gap: ;
-    --header-padding: ;
+    --header-gap: 0;
+    --header-padding: 0;
 
     &.column {
         --header-flex-direction: column;
