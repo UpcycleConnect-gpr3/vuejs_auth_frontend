@@ -64,3 +64,11 @@ div#app {
 .layout-gap-large {
     gap: var(--gap-large);
 }
+
+.layout-full-height-screen {
+    height: 100vh;
+}
+
+.layout-full-width {
+    width: 100vw;
+}
