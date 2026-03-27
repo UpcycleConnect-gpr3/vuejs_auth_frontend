@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <main class="layout-app">
-    <!-- Sidebar -->
+
     <nav class="sidebar">
       <hgroup>
         <h4 class="semibold">Settings</h4>
@@ -28,7 +28,7 @@ import { RouterLink } from 'vue-router'
       </ul>
     </nav>
 
-    <!-- Content -->
+
     <div class="layout-fill layout-padding-large layout-flex layout-columns layout-gap-large">
       <hgroup>
         <h2 class="semibold">Account</h2>
