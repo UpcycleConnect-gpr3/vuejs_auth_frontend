@@ -1,16 +1,4 @@
 header {
     --header-gap: 0;
     --header-padding: 0;
-
-    &.column {
-        --header-flex-direction: column;
-    }
-
-    &.start {
-        --header-align-items: flex-start;
-    }
-
-    &.center {
-        --header-align-items: center;
-    }
 }
