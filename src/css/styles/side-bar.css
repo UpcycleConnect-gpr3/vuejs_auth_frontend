@@ -1,0 +1,6 @@
+.sidebar {
+    --sidebar-width: 250px;
+    --sidebar-bg-color: var(--primary-color);
+    --sidebar-padding: var(--padding-medium);
+    --sidebar-gap: var(--gap-medium);
+}
