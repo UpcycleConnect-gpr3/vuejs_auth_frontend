@@ -34,7 +34,7 @@ export const useAuthStore = defineStore(
       error.value = null
 
       try {
-        const response = await api.post<AuthResponse>('/register/', credentials)
+        const response = await api.post<AuthResponse>('/auth/register/', credentials)
         bearerToken.value = response.data.bearer_token
         isLoading.value = false
       } catch (err) {
