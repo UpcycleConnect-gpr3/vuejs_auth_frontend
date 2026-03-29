@@ -10,7 +10,7 @@
     rel="stylesheet"
   />
 
-  <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto">
+<!--  <div class="mx-4 max-w-screen-xl sm:mx-8 xl:mx-auto">
     <h1 class="border-b py-6 text-4xl font-semibold">Settings</h1>
     <div class="grid grid-cols-8 pt-3 pb-10 sm:grid-cols-10">
       <div class="relative my-4 w-56 sm:hidden">
@@ -84,7 +84,7 @@
       <div class="col-span-8 rounded-xl sm:bg-gray-50 sm:px-8 sm:shadow">
         <div class="pt-4">
           <h1 class="py-2 text-2xl font-semibold">Billing settings</h1>
-          <!-- <p class="font- text-slate-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p> -->
+          &lt;!&ndash; <p class="font- text-slate-600">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p> &ndash;&gt;
         </div>
         <hr class="mt-4 mb-8" />
 
@@ -216,5 +216,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 </template>
