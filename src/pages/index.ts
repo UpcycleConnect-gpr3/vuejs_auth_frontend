@@ -6,3 +6,5 @@ export { default as AccountPage } from './settings/AccountPage.vue'
 export { default as OrganizationPage } from './settings/OrganizationPage.vue'
 export { default as NotificationPage } from './settings/NotificationPage.vue'
 export { default as ProfilePage } from './settings/ProfilePage.vue'
+export { default as HomePage } from './HomePage.vue'
+
