@@ -8,7 +8,7 @@
       <hgroup>
         <h4 class="semibold">Settings</h4>
       </hgroup>
-      <ul class="sidebar-nav">
+      <ul class="sidebar-nav-list">
         <li class="sidebar-nav-item">
           <RouterLink to="/settings/profile">Profile</RouterLink>
         </li>

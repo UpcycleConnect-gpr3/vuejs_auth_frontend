@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <main class="layout-app">
@@ -8,7 +7,7 @@
       <hgroup>
         <h4 class="semibold">Settings</h4>
       </hgroup>
-      <ul class="sidebar-nav">
+      <ul class="sidebar-nav-list">
         <li class="sidebar-nav-item">
           <RouterLink to="/settings/profile">Profile</RouterLink>
         </li>
@@ -68,7 +67,12 @@
         <h5 class="semibold">Bio</h5>
         <div class="form-group gap-small">
           <label for="bio">À propos de vous</label>
-          <textarea id="bio" class="primary" rows="4" placeholder="Parlez-nous de vous..."></textarea>
+          <textarea
+            id="bio"
+            class="primary"
+            rows="4"
+            placeholder="Parlez-nous de vous..."
+          ></textarea>
         </div>
       </section>
 
