@@ -27,7 +27,7 @@
     </nav>
 
     <!-- Content -->
-    <div class="layout-fill layout-padding-large layout-flex layout-columns layout-gap-large">
+    <div class="layout-flex-full layout-padding-large layout-flex layout-columns layout-gap-large">
       <hgroup>
         <h2 class="semibold">Profile</h2>
         <p>Gérez vos informations personnelles.</p>
