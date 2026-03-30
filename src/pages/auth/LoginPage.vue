@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, watch } from 'vue'
 import type { AuthCredentials } from '@/types/auth.ts'
 import { useAuthStore } from '@/stores/auth.ts'
+import router from '@/router'
 
 const showPassword = ref(false)
 const authStore = useAuthStore()
@@ -13,7 +14,15 @@ const form = reactive<AuthCredentials>({
 
 async function handleLogin() {
   await authStore.login(form)
+  if (authStore.isAuthenticated) {
+    await router.push({ name: 'home' })
+  }
 }
+
+if (authStore.isAuthenticated) {
+  router.push({ name: 'home' })
+}
+
 </script>
 
 <template>
