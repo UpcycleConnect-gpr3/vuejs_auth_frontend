@@ -5,7 +5,7 @@
     --sidebar-gap: var(--gap-medium);
 }
 
-.sidebar-nav {
+.sidebar-nav-list {
     --sidebar-nav-gap: var(--gap-small);
 }
 
