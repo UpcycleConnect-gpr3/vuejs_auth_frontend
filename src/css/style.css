@@ -85,8 +85,11 @@ div#app {
     width: 100vw;
 }
 
-.layout-fill {
+.layout-flex-full {
     flex: 1;
+}
+
+.layout-overflow-y {
     overflow-y: auto;
 }
 
