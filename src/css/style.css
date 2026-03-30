@@ -85,6 +85,18 @@ div#app {
     width: 100vw;
 }
 
+.layout-flex-full {
+    flex: 1;
+}
+
+.layout-overflow-y {
+    overflow-y: auto;
+}
+
+.layout-padding-large {
+    padding: var(--padding-large);
+}
+
 .container {
     margin-inline: auto;
 

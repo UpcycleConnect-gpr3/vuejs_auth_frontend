@@ -1,0 +1,30 @@
+.toggle {
+    --toggle-width: 36px;
+    --toggle-height: 20px;
+    --toggle-thumb-size: 16px;
+    --toggle-thumb-offset: 2px;
+    --toggle-thumb-travel: 16px;
+
+    --toggle-track-bg: oklch(from var(--foreground-color) l c h / 0.2);
+    --toggle-track-checked-bg: var(--secondary-color);
+
+    --toggle-thumb-bg: var(--foreground-color);
+    --toggle-thumb-checked-bg: var(--background-color);
+}
+
+.notification-row {
+    --notification-row-gap: var(--gap-large);
+}
+
+.notification-row-info {
+    --notification-row-info-gap: var(--gap-small);
+}
+
+.toggle-group {
+    --toggle-group-gap: var(--gap-medium);
+}
+
+.toggle-label {
+    --toggle-label-gap: var(--gap-small);
+    --toggle-label-font-size: var(--font-size-small);
+}
