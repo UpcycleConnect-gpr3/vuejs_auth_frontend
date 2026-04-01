@@ -1,0 +1,122 @@
+:root {
+    --font-sans:
+            'Inter', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+            'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Colors */
+    --black: #1F2021;
+    --white: oklch(100% 0.00011 271.152);
+
+    --black-foreground: var(--white);
+    --white-foreground: var(--black);
+
+    --background-color: var(--black);
+    --foreground-color: var(--white);
+
+    --primary-color: #00433D;
+    --primary-foreground-color: var(--white);
+
+    --secondary-color: #D8FF4F;
+    --secondary-foreground-color: var(--black);
+
+    --tertiary-color: #F5F5F5;
+    --tertiary-foreground-color: var(--black);
+
+    --destructive-color: oklch(63.78% 0.23729 25.422);
+    --destructive-foreground-color: var(--black);
+
+    --success-color: oklch(72.887% 0.21192 147.841);
+    --success-foreground-color: var(--black);
+
+    --warning-color: oklch(77.239% 0.17274 65.36);
+    --warning-foreground-color: var(--black);
+
+    --information-color: oklch(61.874% 0.20682 259.248);
+    --info-foreground-color: var(--black);
+
+    --disable-background-color: oklch(64.673% 0.00007 271.152);
+    --disable-border-color: oklch(64.673% 0.00007 271.152);
+    --disable-foreground-color: oklch(12.856% 0.00001 271.152);
+
+    --padding-small: 5px;
+    --padding-medium: 10px;
+    --padding-large: 20px;
+
+    --gap-small: 5px;
+    --gap-medium: 10px;
+    --gap-large: 20px;
+    --gap-extra-large: 40px;
+    --gap-extra-extra-large: 60px;
+
+    --font-size-base: 14px;
+    --font-size-factor: 2px;
+
+    --font-size-small: calc(var(--font-size-base) + 0 * var(--font-size-factor));
+    --font-size-medium: calc(var(--font-size-base) + 1 * var(--font-size-factor));
+    --font-size-large: calc(var(--font-size-base) + 2 * var(--font-size-factor));
+    --font-size-xlarge: calc(var(--font-size-base) + 4 * var(--font-size-factor));
+    --font-size-xxlarge: calc(var(--font-size-base) + 8 * var(--font-size-factor));
+    --font-size-xxxlarge: calc(var(--font-size-base) + 14 * var(--font-size-factor));
+    --font-size-xxxxlarge: calc(var(--font-size-base) + 22 * var(--font-size-factor));
+    --font-size-xxxxxlarge: calc(var(--font-size-base) + 28 * var(--font-size-factor));
+
+    --height-base: 28px;
+    --height-factor: 14px;
+
+    --height-small: calc(var(--height-base) + 0 * var(--height-factor));
+    --height-medium: calc(var(--height-base) + 1 * var(--height-factor));
+    --height-large: calc(var(--height-base) + 2 * var(--height-factor));
+
+    --width-small: 512px;
+    --width-medium: 768px;
+    --width-large: 896px;
+
+    /* À définir */
+    --outline-width-base: 2px;
+    --outline-width-factor: 1px;
+
+    /* À définir */
+    --outline-width-small: calc(var(--outline-width-base) + 0 * var(--outline-width-factor));
+    --outline-width-medium: calc(var(--outline-width-base) + 1 * var(--outline-width-factor));
+    --outline-width-large: calc(var(--outline-width-base) + 2 * var(--outline-width-factor));
+
+    /* Component */
+
+    --width-component: auto;
+
+    --rounded-component: 4px;
+
+    /* À définir */
+    --border-width-component: 0px;
+    --border-style-component: none;
+
+    /* À définir */
+    --outline-style-component: solid;
+    --outline-offset-component: 2px;
+
+    --opacity-component: 100%;
+    /* À définir */
+    --disable-opacity-component: 75%;
+
+    --font-weight-component: 500;
+    --font-family-component: 'Inter';
+
+    /* Layout */
+
+    --width-layout: auto;
+    --height-layout: auto;
+
+    --rounded-layout: 10px;
+
+    /* À revoir */
+    --border-width-layout: 2px;
+    --border-style-layout: solid;
+
+    /* À définir */
+    --outline-style-layout: none;
+    --outline-offset-layout: 0px;
+
+    --opacity-layout: 100%;
+    /* À définir */
+    --disable-opacity-layout: 75%;
+}

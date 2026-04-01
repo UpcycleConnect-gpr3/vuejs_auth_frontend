@@ -1,0 +1,13 @@
+div.form-group {
+    --form-group-flex-direction: column;
+    --form-group-gap: var(--gap-medium);
+
+    &.inline {
+        --form-group-flex-direction: row;
+    }
+
+    &.gap-small {
+        --form-group-gap: var(--gap-small);
+    }
+
+}

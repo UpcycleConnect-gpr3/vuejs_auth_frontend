@@ -1,0 +1,22 @@
+p {
+    --p-background-color: none;
+    --p-text-color: var(--tertiary-color);
+    --p-border-color: none;
+
+    --p-font-size: var(--font-size-medium);
+
+    --p-font-weight: var(--font-weight-component);
+    --p-font-family: var(--font-family-component);
+
+    --p-letter-spacing: 0px;
+    --p-text-transform: none;
+    --p-text-align: center;
+
+    &.smalll {
+        --p-font-size: var(--font-size-small);
+    }
+
+    &.large {
+        --p-font-size: var(--font-size-large);
+    }
+}

@@ -1,0 +1,6 @@
+div.form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: var(--form-group-flex-direction);
+    gap: var(--form-group-gap);
+}

@@ -1,0 +1,13 @@
+p {
+    background-color: var(--p-background-color);
+    color: var(--p-text-color);
+    border-color: var(--p-border-color);
+
+    font-size: var(--p-font-size);
+    font-weight: var(--p-font-weight);
+    font-family: var(--p-font-family), serif;
+
+    letter-spacing: var(--p-letter-spacing);
+    text-transform: var(--p-text-transform);
+    text-align: var(--p-text-align);
+}

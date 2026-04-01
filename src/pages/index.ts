@@ -1,2 +1,10 @@
 export { default as LoginPage } from './auth/LoginPage.vue'
 export { default as ForgotPage } from './auth/ForgotPage.vue'
+export { default as A2FCodePage } from './auth/A2FCodePage.vue'
+export { default as BillingPage } from './settings/BillingPage.vue'
+export { default as AccountPage } from './settings/AccountPage.vue'
+export { default as OrganizationPage } from './settings/OrganizationPage.vue'
+export { default as NotificationPage } from './settings/NotificationPage.vue'
+export { default as ProfilePage } from './settings/ProfilePage.vue'
+export { default as HomePage } from './HomePage.vue'
+

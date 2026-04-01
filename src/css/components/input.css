@@ -1,0 +1,71 @@
+input[type='text'], input[type='password'], input[type='email'] {
+    height: var(--input-height);
+    width: var(--input-width);
+
+    padding: var(--input-padding-top) var(--input-padding-right) var(--input-padding-bottom) var(--input-padding-left);
+
+    border-radius: var(--input-border-radius);
+
+    background-color: var(--input-bg-color);
+    color: var(--input-text-color);
+    border-color: var(--input-border-color);
+
+    font-size: var(--input-font-size);
+    font-weight: var(--input-font-weight);
+    font-family: var(--input-font-family);
+
+    letter-spacing: var(--input-letter-spacing);
+    text-transform: var(--input-text-transform);
+    text-align: var(--input-text-align);
+
+    border-width: var(--input-border-width);
+    border-style: var(--input-border-style);
+
+    opacity: var(--input-opacity);
+
+    + span > svg {
+        stroke: var(--input-text-color);
+    }
+
+    &:disabled {
+        background-color: var(--input-disabled-bg-color);
+        color: var(--input-disabled-text-color);
+        opacity: var(--input-disabled-opacity);
+        box-shadow: var(--input-disabled-box-shadow);
+        border-color: var(--input-disabled-border-color);
+        cursor: not-allowed;
+        + span > svg {
+            stroke: var(--input-disabled-text-color);
+        }
+    }
+
+    &:not(:disabled):hover {
+        background-color: var(--input-hover-bg-color);
+        color: var(--input-hover-text-color);
+        border-color: var(--input-hover-border-color);
+        + span > svg {
+            stroke: var(--input-hover-text-color);
+        }
+    }
+
+    &:not(:disabled):focus {
+        outline: var(--input-focus-outline-color) var(--input-focus-outline-style) var(--input-focus-outline-width);
+        outline-offset: var(--input-focus-outline-offset);
+        box-shadow: var(--input-focus-box-shadow);
+    }
+
+    &:not(:disabled):active {
+        background-color: var(--input-active-bg-color);
+        color: var(--input-active-text-color);
+        outline-color: var(--input-active-outline-color);
+        + span > svg {
+            stroke: var(--input-active-text-color);
+        }
+    }
+
+    transition:
+            color var(--input-color-transition-duration) var(--input-color-transition-timing-function),
+            var(--input-box-shadow-transition-timing-function),
+            outline var(--input-outline-transition-duration) var(--input-outline-transition-timing-function);
+    cursor: pointer;
+}

@@ -1,0 +1,12 @@
+label {
+    background-color: var(--label-bg-color);
+    color: var(--label-text-color);
+
+    font-size: var(--label-font-size);
+    font-weight: var(--label-font-weight);
+    font-family: var(--label-font-family);
+
+    letter-spacing: var(--label-letter-spacing);
+    text-transform: var(--label-text-transform);
+    text-align: var(--label-text-align);
+}
