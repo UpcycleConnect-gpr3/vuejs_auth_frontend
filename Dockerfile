@@ -1,20 +1,20 @@
-FROM oven/bun:1.1.12 AS dev
+FROM node:lts-alpine AS dev
 
 WORKDIR /app
-COPY package.json bun.lock ./
-RUN bun install
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
 EXPOSE 5173
-CMD ["bun", "run", "dev", "--host"]
+CMD ["npm", "run", "dev", "--", "--host"]
 
 
-FROM oven/bun:1.1.12 AS builder
+FROM node:lts-alpine AS builder
 
 WORKDIR /app
-COPY package.json bun.lock ./
-RUN bun install
+COPY package.json package-lock.json ./
+RUN npm ci
 COPY . .
-RUN bun run build
+RUN npm run build
 
 
 FROM nginx:alpine AS prod
