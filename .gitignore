@@ -42,4 +42,4 @@ __screenshots__/
 *.timestamp-*-*.mjs
 
 .vscode
-.idea
+.pem
