@@ -1,122 +1,256 @@
 :root {
-    --font-sans:
-            'Inter', 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
-            'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+    /* ── Palette ─────────────────────────────────────────────────────────── */
 
-    /* Colors */
+    --green-950: #0A1514;
+    --green-900: #0F1C1A;
+    --green-800: #142726;
+    --green-700: #1B3331;
+    --green-600: #1F2E2C;
+    --green-500: #00433D;
+    --green-400: #1F5F58;
+    --green-300: #2E8078;
+
+    --lime-700: #A8CC3E;
+    --lime-600: #C5EA46;
+    --lime-500: #D8FF4F;
+    --lime-400: #E3FF7A;
+    --lime-300: #EDFBCC;
+    --lime-200: #F3FBDD;
+    --lime-100: #F9FDEE;
+
+    --green-tint-50: #E9F6E9;
+
+    --purple-700: #6B3897;
+    --purple-600: #7B44B0;
+    --purple-500: #8E4EC6;
+    --purple-400: #A370D1;
+
     --black: #1F2021;
-    --white: oklch(100% 0.00011 271.152);
+    --black-pure: #000000;
+    --white: #FFFFFF;
+    --grey-50: #FAFAFA;
+    --grey-100: #F5F5F5;
+    --grey-150: #F0F0EE;
+    --grey-200: #E5E5E5;
+    --grey-300: #D4D4D4;
+    --grey-400: #A3A3A3;
+    --grey-500: #737373;
+    --grey-700: #404040;
+    --grey-800: #262626;
 
-    --black-foreground: var(--white);
-    --white-foreground: var(--black);
+    /* ── Semantic tokens ─────────────────────────────────────────────────── */
 
     --background-color: var(--black);
     --foreground-color: var(--white);
 
-    --primary-color: #00433D;
+    --surface-primary: var(--green-500);
+    --surface-primary-foreground: var(--white);
+
+    --surface-1: var(--green-700);
+    --surface-2: var(--green-800);
+    --surface-3: var(--green-900);
+
+    --primary-color: var(--green-500);
     --primary-foreground-color: var(--white);
 
-    --secondary-color: #D8FF4F;
+    --secondary-color: var(--lime-500);
     --secondary-foreground-color: var(--black);
 
-    --tertiary-color: #F5F5F5;
+    --tertiary-color: var(--grey-100);
     --tertiary-foreground-color: var(--black);
 
-    --destructive-color: oklch(63.78% 0.23729 25.422);
-    --destructive-foreground-color: var(--black);
+    --accent-color: var(--purple-500);
+    --accent-foreground-color: var(--white);
 
-    --success-color: oklch(72.887% 0.21192 147.841);
+    --border-color: oklch(from var(--white) l c h / 0.12);
+    --border-strong-color: oklch(from var(--white) l c h / 0.24);
+    --border-subtle-color: oklch(from var(--white) l c h / 0.06);
+
+    --destructive-color: #EF4444;
+    --destructive-foreground-color: var(--white);
+    --success-color: var(--lime-500);
     --success-foreground-color: var(--black);
-
-    --warning-color: oklch(77.239% 0.17274 65.36);
+    --warning-color: #F59E0B;
     --warning-foreground-color: var(--black);
+    --information-color: var(--purple-500);
+    --info-foreground-color: var(--white);
 
-    --information-color: oklch(61.874% 0.20682 259.248);
-    --info-foreground-color: var(--black);
+    --disable-background-color: oklch(from var(--white) l c h / 0.06);
+    --disable-border-color: oklch(from var(--white) l c h / 0.1);
+    --disable-foreground-color: oklch(from var(--white) l c h / 0.35);
 
-    --disable-background-color: oklch(64.673% 0.00007 271.152);
-    --disable-border-color: oklch(64.673% 0.00007 271.152);
-    --disable-foreground-color: oklch(12.856% 0.00001 271.152);
+    --text-primary: var(--white);
+    --text-secondary: oklch(from var(--white) l c h / 0.72);
+    --text-tertiary: oklch(from var(--white) l c h / 0.5);
+    --text-disabled: oklch(from var(--white) l c h / 0.3);
 
-    --padding-small: 5px;
-    --padding-medium: 10px;
-    --padding-large: 20px;
+    /* ── Spacing scale ────────────────────────────────────────────────────── */
 
-    --gap-small: 5px;
-    --gap-medium: 10px;
-    --gap-large: 20px;
-    --gap-extra-large: 40px;
-    --gap-extra-extra-large: 60px;
+    --space-0: 0;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+    --space-24: 96px;
+    --space-32: 128px;
 
-    --font-size-base: 14px;
+    --padding-small: var(--space-2);
+    --padding-medium: var(--space-3);
+    --padding-large: var(--space-5);
+
+    --gap-small: var(--space-2);
+    --gap-medium: var(--space-3);
+    --gap-large: var(--space-5);
+    --gap-extra-large: var(--space-10);
+    --gap-extra-extra-large: var(--space-16);
+
+    /* ── Typography ──────────────────────────────────────────────────────── */
+
+    --font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-family-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+    --font-sans: var(--font-family-base);
+    --font-family-component: var(--font-family-base);
+
+    --font-size-xs: 12px;
+    --font-size-small: 13px;
+    --font-size-medium: 15px;
+    --font-size-large: 17px;
+    --font-size-xlarge: 20px;
+    --font-size-xxlarge: 24px;
+    --font-size-xxxlarge: 32px;
+    --font-size-xxxxlarge: 48px;
+    --font-size-xxxxxlarge: 64px;
+    --font-size-display: 80px;
+
+    --font-size-base: var(--font-size-small);
     --font-size-factor: 2px;
 
-    --font-size-small: calc(var(--font-size-base) + 0 * var(--font-size-factor));
-    --font-size-medium: calc(var(--font-size-base) + 1 * var(--font-size-factor));
-    --font-size-large: calc(var(--font-size-base) + 2 * var(--font-size-factor));
-    --font-size-xlarge: calc(var(--font-size-base) + 4 * var(--font-size-factor));
-    --font-size-xxlarge: calc(var(--font-size-base) + 8 * var(--font-size-factor));
-    --font-size-xxxlarge: calc(var(--font-size-base) + 14 * var(--font-size-factor));
-    --font-size-xxxxlarge: calc(var(--font-size-base) + 22 * var(--font-size-factor));
-    --font-size-xxxxxlarge: calc(var(--font-size-base) + 28 * var(--font-size-factor));
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-black: 900;
+    --font-weight-component: var(--font-weight-medium);
 
-    --height-base: 28px;
-    --height-factor: 14px;
+    --line-height-tight: 1.1;
+    --line-height-snug: 1.3;
+    --line-height-normal: 1.55;
+    --line-height-relaxed: 1.75;
 
-    --height-small: calc(var(--height-base) + 0 * var(--height-factor));
-    --height-medium: calc(var(--height-base) + 1 * var(--height-factor));
-    --height-large: calc(var(--height-base) + 2 * var(--height-factor));
+    --letter-spacing-tight: -0.035em;
+    --letter-spacing-normal: -0.015em;
+    --letter-spacing-loose: 0;
+
+    /* ── Sizes ───────────────────────────────────────────────────────────── */
+
+    --height-small: 32px;
+    --height-medium: 44px;
+    --height-large: 56px;
 
     --width-small: 512px;
     --width-medium: 768px;
     --width-large: 896px;
 
-    /* À définir */
+    /* ── Borders — NO RADIUS ─────────────────────────────────────────────── */
+
+    --rounded-component: 0;
+    --rounded-layout: 0;
+
+    --border-width-thin: 1px;
+    --border-width-medium: 2px;
+    --border-width-thick: 3px;
+
+    --border-width-base: 1px;
+    --border-width-factor: 1px;
+    --border-width-small: 1px;
+    --border-width-medium: 2px;
+    --border-width-large: 3px;
+
+    --outline-width-small: 2px;
+    --outline-width-medium: 3px;
+    --outline-width-large: 4px;
     --outline-width-base: 2px;
     --outline-width-factor: 1px;
 
-    /* À définir */
-    --outline-width-small: calc(var(--outline-width-base) + 0 * var(--outline-width-factor));
-    --outline-width-medium: calc(var(--outline-width-base) + 1 * var(--outline-width-factor));
-    --outline-width-large: calc(var(--outline-width-base) + 2 * var(--outline-width-factor));
-
-    /* Component */
+    /* ── Component defaults ──────────────────────────────────────────────── */
 
     --width-component: auto;
-
-    --rounded-component: 4px;
-
-    /* À définir */
-    --border-width-component: 0px;
+    --border-width-component: 0;
     --border-style-component: none;
-
-    /* À définir */
     --outline-style-component: solid;
     --outline-offset-component: 2px;
-
-    --opacity-component: 100%;
-    /* À définir */
-    --disable-opacity-component: 75%;
-
-    --font-weight-component: 500;
-    --font-family-component: 'Inter';
-
-    /* Layout */
+    --opacity-component: 1;
+    --disable-opacity-component: 0.5;
 
     --width-layout: auto;
     --height-layout: auto;
-
-    --rounded-layout: 10px;
-
-    /* À revoir */
-    --border-width-layout: 2px;
+    --border-width-layout: 1px;
     --border-style-layout: solid;
-
-    /* À définir */
     --outline-style-layout: none;
     --outline-offset-layout: 0px;
+    --opacity-layout: 1;
+    --disable-opacity-layout: 0.5;
 
-    --opacity-layout: 100%;
-    /* À définir */
-    --disable-opacity-layout: 75%;
+    /* ── Shadows (still flat, via layered borders) ───────────────────────── */
+
+    --shadow-glow-lime: 0 0 0 1px var(--lime-500), 0 0 40px -8px oklch(from var(--lime-500) l c h / 0.4);
+    --shadow-glow-purple: 0 0 0 1px var(--purple-500), 0 0 40px -8px oklch(from var(--purple-500) l c h / 0.4);
+
+    /* ── Transitions ─────────────────────────────────────────────────────── */
+
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: 120ms var(--ease-out);
+    --transition-base: 200ms var(--ease-out);
+    --transition-slow: 400ms var(--ease-out);
+
+    /* ── Container ───────────────────────────────────────────────────────── */
+
+    --container-padding-x: 1.5rem;
+    --container-padding-x-lg: 2rem;
+    --container-max-width: 80rem;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+
+html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: var(--font-family-base);
+    font-weight: var(--font-weight-regular);
+    font-size: var(--font-size-medium);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
+    color: var(--text-primary);
+    background-color: var(--background-color);
+    background-image:
+        radial-gradient(circle at 100% 0%, oklch(from var(--lime-500) l c h / 0.04) 0%, transparent 40%),
+        radial-gradient(circle at 0% 100%, oklch(from var(--purple-500) l c h / 0.05) 0%, transparent 40%);
+}
+
+a, button, input, select, textarea {
+    font-family: var(--font-family-base);
+}
+
+::selection {
+    background-color: var(--lime-500);
+    color: var(--black);
+}
+
+*:focus-visible {
+    outline: 2px solid var(--lime-500);
+    outline-offset: 2px;
 }

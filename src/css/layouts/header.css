@@ -1,8 +1,23 @@
 header {
     width: 100%;
-    height: 110px;
+    max-width: var(--container-max-width);
+    margin-inline: auto;
+    margin-top: var(--space-5);
+    padding: var(--space-4) var(--space-6);
+    height: var(--header-height);
     display: flex;
-    flex-direction: row;
-    align-items: var(--header-align-items);
+    align-items: center;
     justify-content: space-between;
+    flex-shrink: 0;
+    background-color: var(--header-bg-color);
+    border: var(--header-border-width) solid var(--header-border-color);
+    position: sticky;
+    top: var(--space-5);
+    z-index: 50;
+}
+
+header > nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
 }

@@ -1,47 +1,65 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-base);
+    color: inherit;
+    text-wrap: balance;
+}
+
 h1 {
     font-size: var(--h1-font-size);
-    font-family: var(--h1-font-family);
     font-weight: var(--h1-font-weight);
     font-style: var(--h1-font-style);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
     text-align: var(--h1-text-align);
+    color: var(--h1-color, inherit);
 }
 
 h2 {
     font-size: var(--h2-font-size);
-    font-family: var(--h2-font-family);
     font-weight: var(--h2-font-weight);
     font-style: var(--h2-font-style);
+    line-height: var(--line-height-tight);
+    letter-spacing: var(--letter-spacing-tight);
     text-align: var(--h2-text-align);
+    color: var(--h2-color, inherit);
 }
 
 h3 {
     font-size: var(--h3-font-size);
-    font-family: var(--h3-font-family);
     font-weight: var(--h3-font-weight);
     font-style: var(--h3-font-style);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-tight);
     text-align: var(--h3-text-align);
+    color: var(--h3-color, inherit);
 }
 
 h4 {
     font-size: var(--h4-font-size);
-    font-family: var(--h4-font-family);
     font-weight: var(--h4-font-weight);
     font-style: var(--h4-font-style);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-normal);
     text-align: var(--h4-text-align);
+    color: var(--h4-color, inherit);
 }
 
 h5 {
     font-size: var(--h5-font-size);
-    font-family: var(--h5-font-family);
     font-weight: var(--h5-font-weight);
     font-style: var(--h5-font-style);
+    line-height: var(--line-height-snug);
+    letter-spacing: var(--letter-spacing-normal);
     text-align: var(--h5-text-align);
+    color: var(--h5-color, inherit);
 }
 
 h6 {
     font-size: var(--h6-font-size);
-    font-family: var(--h6-font-family);
     font-weight: var(--h6-font-weight);
     font-style: var(--h6-font-style);
+    line-height: var(--line-height-normal);
+    letter-spacing: var(--letter-spacing-normal);
     text-align: var(--h6-text-align);
+    color: var(--h6-color, inherit);
 }

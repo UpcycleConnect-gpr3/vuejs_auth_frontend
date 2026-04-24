@@ -1,229 +1,138 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, reactive } from 'vue'
+import SettingsLayout from '@/components/SettingsLayout.vue'
 
-<style scoped>
-.team-item {
-  padding: var(--padding-small) var(--padding-medium);
-  border-radius: var(--rounded-component);
-  background-color: oklch(from var(--foreground-color) l c h / 0.05);
-  cursor: pointer;
-  font-size: var(--font-size-small);
-  transition: background-color 0.2s ease;
+const organization = reactive({
+  name: 'UpcycleConnect Studio',
+  website: 'https://upcycleconnect.com',
+  size: '10-50',
+})
 
-  &:hover {
-    background-color: oklch(from var(--foreground-color) l c h / 0.1);
-  }
+const members = ref([
+  { id: 1, name: 'Jean Dupont', email: 'jean@example.com', role: 'Owner', initials: 'JD' },
+  { id: 2, name: 'Marie Laurent', email: 'marie@example.com', role: 'Admin', initials: 'ML' },
+  { id: 3, name: 'Thomas Martin', email: 'thomas@example.com', role: 'Member', initials: 'TM' },
+  { id: 4, name: 'Julie Bernard', email: 'julie@example.com', role: 'Member', initials: 'JB' },
+])
 
-  &.active {
-    background-color: oklch(from var(--secondary-color) l c h / 0.15);
-    color: var(--secondary-color);
-    font-weight: 600;
-  }
+const inviteEmail = ref('')
+
+function removeMember(id: number) {
+  members.value = members.value.filter((m) => m.id !== id)
 }
 
-.member-item {
-  padding: var(--padding-medium);
-  border-radius: var(--rounded-component);
-  background-color: oklch(from var(--foreground-color) l c h / 0.05);
+function inviteMember() {
+  if (!inviteEmail.value) return
+  console.log('Invite:', inviteEmail.value)
+  inviteEmail.value = ''
 }
-
-.member-role {
-  font-size: var(--font-size-small);
-  opacity: 0.6;
-}
-</style>
+</script>
 
 <template>
-  <main class="layout-app">
-    <!-- Sidebar -->
-    <nav class="sidebar">
-      <hgroup>
-        <h4 class="semibold">Settings</h4>
-      </hgroup>
-      <ul class="sidebar-nav-list">
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/profile">Profile</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/account">Account</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/teams">Organization</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/billing">Billing</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/notifications">Notifications</RouterLink>
-        </li>
-      </ul>
-    </nav>
+  <SettingsLayout>
+    <header class="settings-header">
+      <span class="eyebrow">Organisation</span>
+      <h1>Équipe &amp; organisation</h1>
+      <p class="muted measure">Gérez votre organisation et les membres qui en font partie.</p>
+    </header>
 
-    <!-- Content -->
-    <div class="layout-flex-full layout-padding-large layout-flex layout-columns layout-gap-large">
-      <hgroup>
-        <h2 class="semibold">Organization</h2>
-        <p>Gérez vos équipes et vos membres.</p>
-      </hgroup>
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Informations</h4>
+        <p class="small muted">Détails publics de l'organisation.</p>
+      </div>
+      <div class="settings-section-body">
+        <form class="layout-flex layout-columns layout-gap-medium">
+          <div class="form-group">
+            <label for="org-name">Nom</label>
+            <input id="org-name" v-model="organization.name" type="text" class="primary medium full-width" />
+          </div>
+          <div class="form-group">
+            <label for="org-site">Site web</label>
+            <input id="org-site" v-model="organization.website" type="url" class="primary medium full-width" />
+          </div>
+          <div class="form-group">
+            <label for="org-size">Taille</label>
+            <select id="org-size" v-model="organization.size" class="primary medium full-width">
+              <option>1-10</option>
+              <option>10-50</option>
+              <option>50-200</option>
+              <option>200+</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </section>
 
-      <hr />
+    <div class="divider"></div>
 
-      <!-- Teams -->
-      <section class="layout-flex layout-columns layout-gap-medium">
-        <div class="layout-flex layout-items-center layout-gap-medium">
-          <h5 class="semibold">Équipes</h5>
-          <button class="secondary small">Créer une équipe</button>
-        </div>
-        <div class="layout-flex layout-columns layout-gap-small">
-          <div class="team-item">Marketing</div>
-          <div class="team-item active">UI/UX Design</div>
-          <div class="team-item">Engineering</div>
-        </div>
-      </section>
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Inviter un membre</h4>
+        <p class="small muted">Envoyez une invitation par email.</p>
+      </div>
+      <div class="settings-section-body">
+        <form @submit.prevent="inviteMember" class="layout-flex layout-gap-medium">
+          <input
+            v-model="inviteEmail"
+            type="email"
+            class="primary medium"
+            placeholder="email@example.com"
+            style="flex: 1;"
+          />
+          <button type="submit" class="primary medium">Inviter</button>
+        </form>
+      </div>
+    </section>
 
-      <hr />
+    <div class="divider"></div>
 
-      <!-- Members -->
-      <section class="layout-flex layout-columns layout-gap-medium">
-        <div class="layout-flex layout-items-center layout-gap-medium">
-          <h5 class="semibold">Membres</h5>
-          <button class="primary small">Inviter un membre</button>
-        </div>
-        <div class="layout-flex layout-columns layout-gap-small">
-          <!-- Member 1 -->
-          <div class="member-item layout-flex layout-columns layout-gap-medium">
-            <div class="layout-flex layout-items-center layout-gap-medium">
-              <span>Shakir Ali</span>
-              <span class="member-role">UI/UX Design</span>
-              <div class="layout-flex layout-gap-small" style="margin-left: auto">
-                <button class="ghost small-square">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Membres</h4>
+        <p class="small muted">{{ members.length }} membre{{ members.length > 1 ? 's' : '' }} dans l'organisation.</p>
+      </div>
+      <div class="settings-section-body">
+        <div class="table-wrapper" style="width: 100%;">
+          <table>
+            <thead>
+              <tr>
+                <th>Membre</th>
+                <th>Rôle</th>
+                <th style="text-align: right;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="m in members" :key="m.id">
+                <td>
+                  <div class="layout-flex layout-gap-medium layout-items-center">
+                    <div class="avatar">{{ m.initials }}</div>
+                    <div>
+                      <div style="font-weight: 500;">{{ m.name }}</div>
+                      <div class="small muted">{{ m.email }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <span class="badge" :class="m.role === 'Owner' ? 'badge--accent' : m.role === 'Admin' ? 'badge--success' : 'badge--muted'">
+                    {{ m.role }}
+                  </span>
+                </td>
+                <td style="text-align: right;">
+                  <button
+                    v-if="m.role !== 'Owner'"
+                    class="ghost small"
+                    @click="removeMember(m.id)"
+                    style="color: var(--destructive-color);"
                   >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                    />
-                  </svg>
-                </button>
-                <button class="outline small-square">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <div class="form-group inline layout-gap-medium">
-              <div class="form-group gap-small">
-                <label for="member1-name">Nom</label>
-                <input type="text" id="member1-name" class="primary medium" value="Shakir Ali" />
-              </div>
-              <div class="form-group gap-small">
-                <label for="member1-email">Email</label>
-                <input
-                  type="email"
-                  id="member1-email"
-                  class="primary medium"
-                  value="shakir.ali@company.com"
-                />
-              </div>
-            </div>
-            <div>
-              <button class="primary medium">Sauvegarder</button>
-            </div>
-          </div>
-
-          <!-- Member 2 -->
-          <div class="member-item layout-flex layout-items-center layout-gap-medium">
-            <span>Ebbie James</span>
-            <span class="member-role">Marketing</span>
-            <div class="layout-flex layout-gap-small" style="margin-left: auto">
-              <button class="ghost small-square">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                  />
-                </svg>
-              </button>
-              <button class="outline small-square">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Member 3 -->
-          <div class="member-item layout-flex layout-items-center layout-gap-medium">
-            <span>Mica Calister</span>
-            <span class="member-role">Engineering</span>
-            <div class="layout-flex layout-gap-small" style="margin-left: auto">
-              <button class="ghost small-square">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                  />
-                </svg>
-              </button>
-              <button class="outline small-square">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
+                    Retirer
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-      </section>
-    </div>
-  </main>
+      </div>
+    </section>
+  </SettingsLayout>
 </template>

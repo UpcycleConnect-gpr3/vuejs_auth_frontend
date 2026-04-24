@@ -1,4 +1,6 @@
 header {
-    --header-gap: 0;
-    --header-padding: 0;
+    --header-height: auto;
+    --header-bg-color: var(--green-800);
+    --header-border-width: 1px;
+    --header-border-color: var(--green-700);
 }

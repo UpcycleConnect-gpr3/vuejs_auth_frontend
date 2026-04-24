@@ -1,41 +1,47 @@
 button {
+    position: relative;
     height: var(--button-height);
     width: var(--button-width);
 
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-
     gap: var(--button-gap);
 
-    padding: var(--button-padding-top) var(--button-padding-right) var(--button-padding-bottom) var(--button-padding-left);
+    padding: 0 var(--button-padding-x);
 
     border-radius: var(--button-border-radius);
-
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
+
+    border-width: var(--button-border-width);
+    border-style: var(--button-border-style);
     border-color: var(--button-border-color);
 
     font-size: var(--button-font-size);
     font-weight: var(--button-font-weight);
     font-family: var(--button-font-family);
-
     letter-spacing: var(--button-letter-spacing);
     text-transform: var(--button-text-transform);
     text-align: var(--button-text-align);
-
-    border-width: var(--button-border-width);
-    border-style: var(--button-border-style);
+    white-space: nowrap;
 
     opacity: var(--button-opacity);
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        background-color var(--transition-base),
+        color var(--transition-base),
+        border-color var(--transition-base),
+        transform var(--transition-fast);
 
     &:disabled {
         background-color: var(--button-disabled-bg-color);
         color: var(--button-disabled-text-color);
-        opacity: var(--button-disabled-opacity);
-        box-shadow: var(--button-disabled-box-shadow);
         border-color: var(--button-disabled-border-color);
+        opacity: var(--button-disabled-opacity);
         cursor: not-allowed;
     }
 
@@ -45,25 +51,14 @@ button {
         border-color: var(--button-hover-border-color);
     }
 
-    &:not(:disabled):focus {
-        outline-color: var(--button-focus-outline-color);
-        outline-width: var(--button-focus-outline-width);
-        outline-style: var(--button-focus-outline-style);
-        outline-offset: var(--button-focus-outline-offset);
-        box-shadow: var(--button-focus-box-shadow);
-    }
-
     &:not(:disabled):active {
         background-color: var(--button-active-bg-color);
         color: var(--button-active-text-color);
-        outline-color: var(--button-active-outline-color);
-        /* translate: 0 2px; */
+        transform: translateY(1px);
     }
 
-    transition:
-            color var(--button-color-transition-duration) var(--button-color-transition-timing-function),
-            var(--button-box-shadow-transition-timing-function),
-            outline var(--button-outline-transition-duration)
-            var(--button-outline-transition-timing-function);
-    cursor: pointer;
+    &:focus-visible {
+        outline: 2px solid var(--lime-500);
+        outline-offset: 3px;
+    }
 }

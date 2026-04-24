@@ -1,32 +1,22 @@
 label {
+    --label-bg-color: transparent;
+    --label-text-color: var(--text-secondary);
     --label-font-size: var(--font-size-small);
-    --label-font-weight: var(--font-weight-component);
+    --label-font-weight: var(--font-weight-medium);
     --label-font-family: var(--font-family-component);
-
-    --label-letter-spacing: 0px;
+    --label-letter-spacing: var(--letter-spacing-normal);
     --label-text-transform: none;
-    --label-text-align: start;
+    --label-text-align: left;
 
-    &.required::after {
-        content: ' *';
-        color: var(--destructive-color);
+    cursor: pointer;
+    user-select: none;
+
+    &.uppercase {
+        --label-text-transform: uppercase;
+        --label-font-size: var(--font-size-xs);
+        --label-font-weight: var(--font-weight-semibold);
+        letter-spacing: 0.08em;
     }
 
-    &.primary {
-        --label-bg-color: var(--primary-color);
-        --label-text-color: var(--primary-foreground-color);
-        --label-border-color: var(--primary-color);
-    }
-
-    &.secondary {
-        --label-bg-color: var(--secondary-color);
-        --label-text-color: var(--secondary-foreground-color);
-        --label-border-color: var(--secondary-color);
-    }
-
-    &.tertiary {
-        --label-bg-color: var(--tertiary-color);
-        --label-text-color: var(--tertiary-foreground-color);
-        --label-border-color: var(--tertiary-color);
-    }
+    &.large { --label-font-size: var(--font-size-medium); }
 }
