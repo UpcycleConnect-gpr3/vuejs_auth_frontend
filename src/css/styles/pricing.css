@@ -1,0 +1,85 @@
+.pricing-grid { --pricing-grid-gap: var(--space-5); }
+
+.pricing-card {
+    --pricing-card-gap: var(--space-6);
+    --pricing-card-padding: var(--space-8);
+    --pricing-card-border-width: 1px;
+    --pricing-card-border-color: var(--border-color);
+    --pricing-card-bg-color: oklch(from var(--white) l c h / 0.02);
+    --pricing-card-text-color: var(--foreground-color);
+
+    &.featured {
+        --pricing-card-border-color: var(--lime-500);
+        --pricing-card-border-width: 1px;
+        --pricing-card-bg-color: oklch(from var(--lime-500) l c h / 0.04);
+    }
+}
+
+.plan-header {
+    --plan-header-gap: var(--space-4);
+    --plan-header-padding-bottom: var(--space-6);
+    --plan-header-border-width: 1px;
+    --plan-header-border-color: var(--border-color);
+}
+
+.plan-name {
+    --plan-name-font-size: var(--font-size-xs);
+    --plan-name-font-weight: var(--font-weight-bold);
+    --plan-name-color: var(--text-tertiary);
+}
+
+.plan-price {
+    --plan-price-font-size: var(--font-size-xxxxlarge);
+    --plan-price-font-weight: var(--font-weight-black);
+    --plan-price-color: var(--foreground-color);
+}
+
+.plan-price-unit {
+    --plan-price-unit-font-size: var(--font-size-medium);
+    --plan-price-unit-color: var(--text-tertiary);
+}
+
+.plan-features { --plan-features-gap: var(--space-3); }
+
+.plan-features-label {
+    --plan-features-label-font-size: var(--font-size-xs);
+    --plan-features-label-color: var(--text-tertiary);
+    --plan-features-label-margin-bottom: var(--space-2);
+}
+
+.plan-feature {
+    --plan-feature-gap: var(--space-3);
+    --plan-feature-font-size: var(--font-size-small);
+    --plan-feature-color: var(--text-primary);
+}
+
+.plan-feature-icon {
+    --plan-feature-icon-size: 16px;
+    --plan-feature-icon-color: var(--lime-500);
+}
+
+.stats-grid { --stats-grid-gap: var(--space-5); }
+
+.stat-box {
+    --stat-box-gap: var(--space-5);
+    --stat-box-padding: var(--space-8);
+    --stat-box-border-width: 1px;
+    --stat-box-border-color: var(--border-color);
+    --stat-box-bg-color: oklch(from var(--white) l c h / 0.02);
+}
+
+.stat-label {
+    --stat-label-font-size: var(--font-size-xs);
+    --stat-label-color: var(--text-tertiary);
+}
+
+.stat-value {
+    --stat-value-font-size: var(--font-size-xxxlarge);
+    --stat-value-font-weight: var(--font-weight-black);
+    --stat-value-color: var(--foreground-color);
+}
+
+.stat-value-unit {
+    --stat-value-unit-font-size: var(--font-size-medium);
+    --stat-value-unit-color: var(--text-tertiary);
+}

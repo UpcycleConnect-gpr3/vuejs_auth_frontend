@@ -5,9 +5,12 @@ p {
 
     font-size: var(--p-font-size);
     font-weight: var(--p-font-weight);
-    font-family: var(--p-font-family), serif;
+    font-family: var(--p-font-family);
 
     letter-spacing: var(--p-letter-spacing);
+    line-height: var(--p-line-height, 1.6);
     text-transform: var(--p-text-transform);
     text-align: var(--p-text-align);
+    text-wrap: pretty;
+    max-width: var(--p-max-width, none);
 }

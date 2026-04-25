@@ -1,93 +1,101 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ref, reactive } from 'vue'
+import SettingsLayout from '@/components/SettingsLayout.vue'
+
+const form = reactive({
+  email: 'jean.dupont@example.com',
+  currentPassword: '',
+  newPassword: '',
+  confirmPassword: '',
+})
+
+const twoFactorEnabled = ref(false)
+</script>
 
 <template>
-  <main class="layout-app">
-    <nav class="sidebar">
-      <hgroup>
-        <h4 class="semibold">Settings</h4>
-      </hgroup>
-      <ul class="sidebar-nav-list">
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/profile">Profile</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/account">Account</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/teams">Organization</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/billing">Billing</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/notifications">Notifications</RouterLink>
-        </li>
-      </ul>
-    </nav>
+  <SettingsLayout>
+    <header class="settings-header">
+      <span class="eyebrow">Compte</span>
+      <h1>Sécurité &amp; connexion</h1>
+      <p class="muted measure">Gérez votre email, mot de passe et options de sécurité.</p>
+    </header>
 
-    <div class="layout-flex-full layout-padding-large layout-flex layout-columns layout-gap-large">
-      <hgroup>
-        <h2 class="semibold">Account</h2>
-        <p>Gérez les paramètres de votre compte.</p>
-      </hgroup>
-
-      <hr />
-
-      <section class="layout-flex layout-columns layout-gap-medium">
-        <h5 class="semibold">Adresse e-mail</h5>
-        <div class="layout-flex layout-items-center layout-gap-medium">
-          <p>Votre adresse e-mail est <strong>john.doe@company.com</strong></p>
-          <button class="ghost small">Modifier</button>
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Email</h4>
+        <p class="small muted">Email utilisé pour se connecter et recevoir les notifications.</p>
+      </div>
+      <div class="settings-section-body">
+        <div class="form-group">
+          <label for="email">Adresse email</label>
+          <input id="email" v-model="form.email" type="email" class="primary medium full-width" />
         </div>
-      </section>
+      </div>
+    </section>
 
-      <hr />
+    <div class="divider"></div>
 
-      <section class="layout-flex layout-columns layout-gap-medium">
-        <h5 class="semibold">Mot de passe</h5>
-        <div class="form-group inline layout-gap-medium">
-          <div class="form-group gap-small">
-            <label for="current-password">Mot de passe actuel</label>
-            <input
-              type="password"
-              id="current-password"
-              class="primary medium"
-              placeholder="***********"
-            />
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Mot de passe</h4>
+        <p class="small muted">Au moins 8 caractères, avec un chiffre et un caractère spécial.</p>
+      </div>
+      <div class="settings-section-body">
+        <form class="layout-flex layout-columns layout-gap-medium">
+          <div class="form-group">
+            <label for="current">Mot de passe actuel</label>
+            <input id="current" v-model="form.currentPassword" type="password" class="primary medium full-width" />
           </div>
-          <div class="form-group gap-small">
-            <label for="new-password">Nouveau mot de passe</label>
-            <input
-              type="password"
-              id="new-password"
-              class="primary medium"
-              placeholder="***********"
-            />
+          <div class="form-group">
+            <label for="new">Nouveau mot de passe</label>
+            <input id="new" v-model="form.newPassword" type="password" class="primary medium full-width" />
           </div>
-        </div>
-        <p>
-          Mot de passe oublié ?
-          <RouterLink to="/auth/forgot-password" class="ghost small"
-            >Récupérer le compte</RouterLink
-          >
-        </p>
-        <div>
-          <button class="primary medium">Sauvegarder le mot de passe</button>
-        </div>
-      </section>
+          <div class="form-group">
+            <label for="confirm">Confirmer le mot de passe</label>
+            <input id="confirm" v-model="form.confirmPassword" type="password" class="primary medium full-width" />
+          </div>
+          <button class="primary medium" style="align-self: flex-start;">Mettre à jour le mot de passe</button>
+        </form>
+      </div>
+    </section>
 
-      <hr />
+    <div class="divider"></div>
 
-      <section class="layout-flex layout-columns layout-gap-medium">
-        <h5 class="semibold">Supprimer le compte</h5>
-        <p>
-          Assurez-vous d'avoir sauvegardé vos données. Cette action est irréversible et supprimera
-          définitivement toutes vos données.
-        </p>
-        <div>
-          <button class="outline medium">Supprimer mon compte</button>
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Authentification à 2 facteurs</h4>
+        <p class="small muted">Ajoutez une couche de sécurité supplémentaire à votre compte.</p>
+      </div>
+      <div class="settings-section-body">
+        <div class="setting-row">
+          <div>
+            <p class="medium">Activer la 2FA</p>
+            <p class="small muted">Un code sera envoyé par email à chaque connexion.</p>
+          </div>
+          <label class="toggle">
+            <input v-model="twoFactorEnabled" type="checkbox" />
+            <span class="toggle-slider"></span>
+          </label>
         </div>
-      </section>
-    </div>
-  </main>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section class="settings-section danger-zone">
+      <div class="settings-section-head">
+        <h4 style="color: var(--destructive-color);">Zone de danger</h4>
+        <p class="small muted">Actions irréversibles sur votre compte.</p>
+      </div>
+      <div class="settings-section-body">
+        <div class="setting-row">
+          <div>
+            <p class="medium">Supprimer le compte</p>
+            <p class="small muted">Efface définitivement votre compte et toutes vos données.</p>
+          </div>
+          <button class="destructive medium">Supprimer</button>
+        </div>
+      </div>
+    </section>
+  </SettingsLayout>
 </template>

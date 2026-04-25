@@ -2,37 +2,41 @@ a {
     height: var(--a-height);
     width: var(--a-width);
 
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
-
+    align-items: center;
+    justify-content: center;
     gap: var(--a-gap);
 
-    padding: var(--a-padding-top) var(--a-padding-right) var(--a-padding-bottom) var(--a-padding-left);
-
+    padding: 0 var(--a-padding-x, 0);
     border-radius: var(--a-border-radius);
 
     background-color: var(--a-bg-color);
     color: var(--a-text-color);
     border-color: var(--a-border-color);
-
-    font-size: var(--a-font-size);
-    font-weight: var(--a-font-weight);
-    font-family: var(--a-font-family), serif;
-
-    letter-spacing: var(--a-letter-spacing);
-    text-transform: var(--a-text-transform);
-    text-align: var(--a-text-align);
-
     border-width: var(--a-border-width);
     border-style: var(--a-border-style);
 
+    font-size: var(--a-font-size);
+    font-weight: var(--a-font-weight);
+    font-family: var(--a-font-family);
+    letter-spacing: var(--a-letter-spacing);
+    text-decoration: var(--a-text-decoration, none);
+    text-transform: var(--a-text-transform);
+    text-align: var(--a-text-align);
+
     opacity: var(--a-opacity);
+    cursor: pointer;
+
+    transition:
+        background-color var(--transition-base),
+        color var(--transition-base),
+        border-color var(--transition-base);
 
     &:disabled {
         background-color: var(--a-disabled-bg-color);
         color: var(--a-disabled-text-color);
         opacity: var(--a-disabled-opacity);
-        box-shadow: var(--a-disabled-box-shadow);
         border-color: var(--a-disabled-border-color);
         cursor: not-allowed;
     }
@@ -43,22 +47,13 @@ a {
         border-color: var(--a-hover-border-color);
     }
 
-    &:not(:disabled):focus {
-        outline: var(--a-focus-outline-color) var(--a-focus-outline-style) var(--a-focus-outline-width);
-        outline-offset: var(--a-focus-outline-offset);
-        box-shadow: var(--a-focus-box-shadow);
+    &:not(:disabled):focus-visible {
+        outline: 2px solid var(--lime-500);
+        outline-offset: 3px;
     }
 
     &:not(:disabled):active {
         background-color: var(--a-active-bg-color);
         color: var(--a-active-text-color);
-        outline-color: var(--a-active-outline-color);
-        /* translate: 0 2px; */
     }
-
-    transition:
-            color var(--a-color-transition-duration) var(--a-color-transition-timing-function),
-            var(--a-box-shadow-transition-timing-function),
-            outline var(--a-outline-transition-duration) var(--a-outline-transition-timing-function);
-    cursor: pointer;
 }

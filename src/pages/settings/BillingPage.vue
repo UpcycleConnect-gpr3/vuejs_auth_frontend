@@ -1,67 +1,108 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import SettingsLayout from '@/components/SettingsLayout.vue'
+
+const currentPlan = {
+  name: 'Pro',
+  price: '15€',
+  period: 'mois',
+  renewal: '28 mai 2026',
+}
+
+const invoices = [
+  { id: 'INV-2026-04', date: '28 avril 2026', amount: '15.00€', status: 'Payée' },
+  { id: 'INV-2026-03', date: '28 mars 2026', amount: '15.00€', status: 'Payée' },
+  { id: 'INV-2026-02', date: '28 février 2026', amount: '15.00€', status: 'Payée' },
+  { id: 'INV-2026-01', date: '28 janvier 2026', amount: '15.00€', status: 'Payée' },
+]
+</script>
 
 <template>
-  <main class="layout-app">
-    <!-- Sidebar -->
-    <nav class="sidebar">
-      <hgroup>
-        <h4 class="semibold">Settings</h4>
-      </hgroup>
-      <ul class="sidebar-nav-list">
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/profile">Profile</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/account">Account</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/teams">Organization</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/billing">Billing</RouterLink>
-        </li>
-        <li class="sidebar-nav-item">
-          <RouterLink to="/settings/notifications">Notifications</RouterLink>
-        </li>
-      </ul>
-    </nav>
+  <SettingsLayout>
+    <header class="settings-header">
+      <span class="eyebrow">Facturation</span>
+      <h1>Abonnement &amp; factures</h1>
+      <p class="muted measure">Gérez votre plan, votre mode de paiement et consultez vos factures.</p>
+    </header>
 
-    <!-- Content -->
-    <div class="layout-flex-full layout-padding-large layout-flex layout-columns layout-gap-large">
-      <hgroup>
-        <h2 class="semibold">Billing</h2>
-        <p>Gérez votre abonnement et vos informations de paiement.</p>
-      </hgroup>
-
-      <hr />
-
-      <!-- Plan actuel -->
-      <section class="layout-flex layout-columns layout-gap-medium">
-        <h5 class="semibold">Plan actuel</h5>
-        <div class="layout-flex layout-items-center layout-gap-medium">
-          <p>Vous êtes sur le plan <strong>Free</strong>.</p>
-          <button class="secondary small">Passer à Pro</button>
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Plan actuel</h4>
+        <p class="small muted">Votre abonnement en cours.</p>
+      </div>
+      <div class="settings-section-body">
+        <div class="plan-card">
+          <div class="layout-flex layout-justify-between layout-items-start">
+            <div>
+              <span class="badge badge--success">{{ currentPlan.name }}</span>
+              <div class="plan-price-row" style="margin-top: var(--space-3);">
+                <span class="plan-price">{{ currentPlan.price }}</span>
+                <span class="plan-price-unit">/{{ currentPlan.period }}</span>
+              </div>
+              <p class="small muted" style="margin-top: var(--space-2);">
+                Prochain renouvellement le {{ currentPlan.renewal }}
+              </p>
+            </div>
+            <div class="layout-flex layout-columns layout-gap-small">
+              <button class="primary small">Changer de plan</button>
+              <button class="ghost small">Annuler</button>
+            </div>
+          </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <hr />
+    <div class="divider"></div>
 
-      <!-- Moyen de paiement -->
-      <section class="layout-flex layout-columns layout-gap-medium">
-        <h5 class="semibold">Moyen de paiement</h5>
-        <p>Aucun moyen de paiement enregistré.</p>
-        <div>
-          <button class="primary medium">Ajouter une carte</button>
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Moyen de paiement</h4>
+        <p class="small muted">Carte utilisée pour les prélèvements automatiques.</p>
+      </div>
+      <div class="settings-section-body">
+        <div class="setting-row">
+          <div class="layout-flex layout-gap-medium layout-items-center">
+            <div class="icon-box"><span class="mono" style="font-weight: 700; font-size: 10px;">VISA</span></div>
+            <div>
+              <p class="medium">•••• •••• •••• 4242</p>
+              <p class="small muted">Expire 12/2028</p>
+            </div>
+          </div>
+          <button class="ghost small">Modifier</button>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <hr />
+    <div class="divider"></div>
 
-      <!-- Historique de facturation -->
-      <section class="layout-flex layout-columns layout-gap-medium">
-        <h5 class="semibold">Historique de facturation</h5>
-        <p>Aucune facture disponible pour le moment.</p>
-      </section>
-    </div>
-  </main>
+    <section class="settings-section">
+      <div class="settings-section-head">
+        <h4>Historique des factures</h4>
+        <p class="small muted">Téléchargez vos factures PDF.</p>
+      </div>
+      <div class="settings-section-body">
+        <div class="table-wrapper" style="width: 100%;">
+          <table>
+            <thead>
+              <tr>
+                <th>Numéro</th>
+                <th>Date</th>
+                <th>Montant</th>
+                <th>Statut</th>
+                <th style="text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="inv in invoices" :key="inv.id">
+                <td class="mono">{{ inv.id }}</td>
+                <td>{{ inv.date }}</td>
+                <td class="mono">{{ inv.amount }}</td>
+                <td><span class="badge badge--success">{{ inv.status }}</span></td>
+                <td style="text-align: right;"><a class="ghost">Télécharger</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </SettingsLayout>
 </template>

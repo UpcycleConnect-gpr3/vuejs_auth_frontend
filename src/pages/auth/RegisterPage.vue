@@ -3,10 +3,10 @@ import { ref, reactive } from 'vue'
 import { RouterLink } from 'vue-router'
 import type { AuthCredentials } from '@/types/auth.ts'
 import { useAuthStore } from '@/stores/auth.ts'
+import router from '@/router'
 
 const showPassword = ref(false)
 const authStore = useAuthStore()
-
 const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL ?? 'http://upcycle-front.localhost'
 
 const form = reactive<AuthCredentials>({
@@ -14,10 +14,10 @@ const form = reactive<AuthCredentials>({
   password: '',
 })
 
-async function handleLogin() {
-  await authStore.login(form)
-  if (authStore.isAuthenticated) {
-    window.location.href = upcycleUrl
+async function handleRegister() {
+  await authStore.register(form)
+  if (!authStore.error) {
+    await router.push({ name: 'login' })
   }
 }
 
@@ -34,12 +34,12 @@ if (authStore.isAuthenticated) {
           <div class="logo-dot"></div>
           <span>UpcycleConnect</span>
         </RouterLink>
-        <span class="eyebrow">Welcome back</span>
-        <h1 class="bold">Connectez-vous à<br />votre compte</h1>
-        <p class="muted measure">Bon retour parmi nous. Renseignez vos identifiants ci-dessous.</p>
+        <span class="eyebrow">Get started</span>
+        <h1 class="bold">Créer votre<br />compte gratuit</h1>
+        <p class="muted measure">Rejoignez UpcycleConnect en quelques secondes.</p>
       </div>
 
-      <form @submit.prevent="handleLogin" class="auth-form">
+      <form @submit.prevent="handleRegister" class="auth-form">
         <div class="form-group">
           <label for="email">Email</label>
           <input
@@ -54,10 +54,7 @@ if (authStore.isAuthenticated) {
         </div>
 
         <div class="form-group">
-          <div class="layout-flex layout-justify-between layout-items-center">
-            <label for="password">Mot de passe</label>
-            <RouterLink to="/auth/forgot-password" class="ghost">Mot de passe oublié ?</RouterLink>
-          </div>
+          <label for="password">Mot de passe</label>
           <div class="input-with-action">
             <input
               id="password"
@@ -65,7 +62,7 @@ if (authStore.isAuthenticated) {
               :type="showPassword ? 'text' : 'password'"
               class="primary medium full-width"
               placeholder="••••••••"
-              autocomplete="current-password"
+              autocomplete="new-password"
               required
             />
             <button type="button" class="ghost small" @click="showPassword = !showPassword">
@@ -79,14 +76,18 @@ if (authStore.isAuthenticated) {
         </p>
 
         <button type="submit" class="primary medium full-width" :disabled="authStore.isLoading as boolean">
-          {{ authStore.isLoading ? 'Connexion...' : 'Se connecter' }}
+          {{ authStore.isLoading ? 'Création...' : "S'inscrire" }}
         </button>
+
+        <p class="tiny muted center">
+          En continuant, vous acceptez nos <a>Conditions</a> et notre <a>Politique de confidentialité</a>.
+        </p>
       </form>
 
       <div class="auth-card-foot">
         <p class="small muted center">
-          Pas encore de compte ?
-          <RouterLink to="/auth/register" class="ghost" style="display: inline; padding: 0;">Créer un compte</RouterLink>
+          Déjà un compte ?
+          <RouterLink to="/auth/login" class="ghost" style="display: inline; padding: 0;">Se connecter</RouterLink>
         </p>
       </div>
     </div>

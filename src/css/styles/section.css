@@ -1,0 +1,25 @@
+section {
+    --section-padding-y: var(--space-20);
+}
+
+.card {
+    --card-bg-color: var(--green-800);
+    --card-padding: var(--space-10);
+    --card-border-width: 1px;
+    --card-border-color: var(--green-700);
+    --card-hover-bg-color: var(--green-700);
+    --card-hover-border-color: var(--green-600);
+}
+
+.image-placeholder {
+    --image-placeholder-min-height: 240px;
+    --image-placeholder-bg: var(--green-700);
+    --image-placeholder-pattern:
+        linear-gradient(135deg,
+            transparent 25%,
+            oklch(from var(--white) l c h / 0.04) 25%,
+            oklch(from var(--white) l c h / 0.04) 50%,
+            transparent 50%,
+            transparent 75%,
+            oklch(from var(--white) l c h / 0.04) 75%);
+}

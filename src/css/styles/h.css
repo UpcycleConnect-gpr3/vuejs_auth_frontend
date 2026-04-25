@@ -1,162 +1,88 @@
 h1 {
-    --h1-font-size: var(--font-size-xxxxxlarge);
-    --h1-font-family: var(--font-family-component);
-    &.bold {
-        --h1-font-weight: bold;
-    }
+    --h1-font-size: clamp(40px, 6vw, var(--font-size-xxxxxlarge));
+    --h1-font-weight: var(--font-weight-black);
 
-    &.semibold {
-        --h1-font-weight: 600;
-    }
-
-    &.regular {
-        --h1-font-weight: 500;
-    }
-
-    &.normal {
-        --h1-font-weight: normal;
-    }
-
-    &.italic {
-        --h1-font-style: italic;
-    }
-
-    &.center {
-        --h1-text-align: center;
-    }
+    &.bold { --h1-font-weight: var(--font-weight-bold); }
+    &.black { --h1-font-weight: var(--font-weight-black); }
+    &.semibold { --h1-font-weight: var(--font-weight-semibold); }
+    &.regular { --h1-font-weight: var(--font-weight-regular); }
+    &.italic { --h1-font-style: italic; }
+    &.center { --h1-text-align: center; }
+    &.left { --h1-text-align: left; }
+    &.right { --h1-text-align: right; }
+    &.display { --h1-font-size: clamp(56px, 8vw, var(--font-size-display)); }
+    &.secondary { --h1-color: var(--secondary-color); }
+    &.accent { --h1-color: var(--accent-color); }
+    &.muted { --h1-color: var(--text-secondary); }
 }
 
 h2 {
-    --h2-font-size: var(--font-size-xxxxlarge);
-    --h2-font-family: var(--font-family-component);
-    &.bold {
-        --h2-font-weight: bold;
-    }
+    --h2-font-size: clamp(32px, 5vw, var(--font-size-xxxxlarge));
+    --h2-font-weight: var(--font-weight-bold);
 
-    &.semibold {
-        --h2-font-weight: 600;
-    }
-
-    &.regular {
-        --h2-font-weight: 500;
-    }
-
-    &.normal {
-        --h2-font-weight: normal;
-    }
-
-    &.italic {
-        --h2-font-style: italic;
-    }
-    &.center {
-        --h2-text-align: center;
-    }
+    &.bold { --h2-font-weight: var(--font-weight-bold); }
+    &.black { --h2-font-weight: var(--font-weight-black); }
+    &.semibold { --h2-font-weight: var(--font-weight-semibold); }
+    &.regular { --h2-font-weight: var(--font-weight-regular); }
+    &.italic { --h2-font-style: italic; }
+    &.center { --h2-text-align: center; }
+    &.left { --h2-text-align: left; }
+    &.right { --h2-text-align: right; }
+    &.secondary { --h2-color: var(--secondary-color); }
+    &.accent { --h2-color: var(--accent-color); }
+    &.muted { --h2-color: var(--text-secondary); }
 }
 
 h3 {
     --h3-font-size: var(--font-size-xxxlarge);
-    --h3-font-family: var(--font-family-component);
-    &.bold {
-        --h3-font-weight: bold;
-    }
+    --h3-font-weight: var(--font-weight-bold);
 
-    &.semibold {
-        --h3-font-weight: 600;
-    }
-
-    &.regular {
-        --h3-font-weight: 500;
-    }
-
-    &.normal {
-        --h3-font-weight: normal;
-    }
-
-    &.italic {
-        --h3-font-style: italic;
-    }
-    &.center {
-        --h3-text-align: center;
-    }
+    &.bold { --h3-font-weight: var(--font-weight-bold); }
+    &.black { --h3-font-weight: var(--font-weight-black); }
+    &.semibold { --h3-font-weight: var(--font-weight-semibold); }
+    &.regular { --h3-font-weight: var(--font-weight-regular); }
+    &.italic { --h3-font-style: italic; }
+    &.center { --h3-text-align: center; }
+    &.left { --h3-text-align: left; }
+    &.right { --h3-text-align: right; }
+    &.secondary { --h3-color: var(--secondary-color); }
+    &.accent { --h3-color: var(--accent-color); }
 }
 
 h4 {
     --h4-font-size: var(--font-size-xxlarge);
-    --h4-font-family: var(--font-family-component);
-    &.bold {
-        --h4-font-weight: bold;
-    }
+    --h4-font-weight: var(--font-weight-bold);
 
-    &.semibold {
-        --h4-font-weight: 600;
-    }
-
-    &.regular {
-        --h4-font-weight: 500;
-    }
-
-    &.normal {
-        --h4-font-weight: normal;
-    }
-
-    &.italic {
-        --h4-font-style: italic;
-    }
-    &.center {
-        --h4-text-align: center;
-    }
+    &.bold { --h4-font-weight: var(--font-weight-bold); }
+    &.semibold { --h4-font-weight: var(--font-weight-semibold); }
+    &.regular { --h4-font-weight: var(--font-weight-regular); }
+    &.center { --h4-text-align: center; }
+    &.secondary { --h4-color: var(--secondary-color); }
+    &.accent { --h4-color: var(--accent-color); }
 }
 
 h5 {
     --h5-font-size: var(--font-size-xlarge);
-    --h5-font-family: var(--font-family-component);
-    &.bold {
-        --h5-font-weight: bold;
-    }
+    --h5-font-weight: var(--font-weight-semibold);
 
-    &.semibold {
-        --h5-font-weight: 600;
-    }
-
-    &.regular {
-        --h5-font-weight: 500;
-    }
-
-    &.normal {
-        --h5-font-weight: normal;
-    }
-
-    &.italic {
-        --h5-font-style: italic;
-    }
-    &.center {
-        --h5-text-align: center;
-    }
+    &.bold { --h5-font-weight: var(--font-weight-bold); }
+    &.semibold { --h5-font-weight: var(--font-weight-semibold); }
+    &.regular { --h5-font-weight: var(--font-weight-regular); }
+    &.center { --h5-text-align: center; }
+    &.secondary { --h5-color: var(--secondary-color); }
 }
 
 h6 {
     --h6-font-size: var(--font-size-large);
-    --h6-font-family: var(--font-family-component);
-    &.bold {
-        --h6-font-weight: bold;
-    }
+    --h6-font-weight: var(--font-weight-semibold);
 
-    &.semibold {
-        --h6-font-weight: 600;
-    }
-
-    &.regular {
-        --h6-font-weight: 500;
-    }
-
-    &.normal {
-        --h6-font-weight: normal;
-    }
-
-    &.italic {
-        --h6-font-style: italic;
-    }
-    &.center {
-        --h6-text-align: center;
+    &.bold { --h6-font-weight: var(--font-weight-bold); }
+    &.semibold { --h6-font-weight: var(--font-weight-semibold); }
+    &.regular { --h6-font-weight: var(--font-weight-regular); }
+    &.center { --h6-text-align: center; }
+    &.uppercase {
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        --h6-font-size: var(--font-size-medium);
     }
 }
