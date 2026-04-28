@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import SettingsLayout from '@/components/SettingsLayout.vue'
+import { useAuthStore } from '@/stores/auth.ts'
 
 const form = reactive({
   firstname: 'Jean',
@@ -8,6 +9,8 @@ const form = reactive({
   username: 'jeandupont',
   bio: '',
 })
+
+const authStore = useAuthStore()
 </script>
 
 <template>
@@ -15,7 +18,9 @@ const form = reactive({
     <header class="settings-header">
       <span class="eyebrow">Profil</span>
       <h1>Informations personnelles</h1>
-      <p class="muted measure">Gérez la manière dont vous apparaissez aux autres utilisateurs d'UpcycleConnect.</p>
+      <p class="muted measure">
+        Gérez la manière dont vous apparaissez aux autres utilisateurs d'UpcycleConnect.
+      </p>
     </header>
 
     <section class="settings-section">
@@ -44,18 +49,34 @@ const form = reactive({
       <div class="settings-section-body">
         <form class="layout-flex layout-columns layout-gap-medium">
           <div class="layout-flex layout-gap-medium">
-            <div class="form-group" style="flex: 1;">
+            <div class="form-group" style="flex: 1">
               <label for="firstname">Prénom</label>
-              <input id="firstname" v-model="form.firstname" type="text" class="primary medium full-width" />
+              <input
+                id="firstname"
+                v-model="form.firstname"
+                type="text"
+                class="primary medium full-width"
+              />
             </div>
-            <div class="form-group" style="flex: 1;">
+            <div class="form-group" style="flex: 1">
               <label for="lastname">Nom</label>
-              <input id="lastname" v-model="form.lastname" type="text" class="primary medium full-width" />
+              <input
+                id="lastname"
+                v-model="form.lastname"
+                type="text"
+                class="primary medium full-width"
+              />
             </div>
           </div>
           <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
-            <input id="username" v-model="form.username" type="text" class="primary medium full-width" placeholder="@jeandupont" />
+            <input
+              id="username"
+              v-model="form.username"
+              type="text"
+              class="primary medium full-width"
+              placeholder="@jeandupont"
+            />
           </div>
         </form>
       </div>
@@ -71,7 +92,13 @@ const form = reactive({
       <div class="settings-section-body">
         <div class="form-group">
           <label for="bio">À propos de vous</label>
-          <textarea id="bio" v-model="form.bio" class="primary full-width" rows="5" placeholder="Parlez-nous de vous..."></textarea>
+          <textarea
+            id="bio"
+            v-model="form.bio"
+            class="primary full-width"
+            rows="5"
+            placeholder="Parlez-nous de vous..."
+          ></textarea>
         </div>
       </div>
     </section>

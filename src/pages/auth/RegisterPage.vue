@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import type { AuthCredentials } from '@/types/auth.ts'
 import { useAuthStore } from '@/stores/auth.ts'
-import router from '@/router'
 
 const showPassword = ref(false)
 const authStore = useAuthStore()
-const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL ?? 'http://upcycle-front.localhost'
+const router = useRouter()
+const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL
 
 const form = reactive<AuthCredentials>({
   email: '',
@@ -15,7 +15,7 @@ const form = reactive<AuthCredentials>({
 })
 
 async function handleRegister() {
-  await authStore.register(form)
+  await authStore.register(form, router)
   if (!authStore.error) {
     await router.push({ name: 'login' })
   }
@@ -51,6 +51,9 @@ if (authStore.isAuthenticated) {
             autocomplete="email"
             required
           />
+          <p v-if="authStore.fieldErrors.email" class="small" style="color: var(--destructive-color)">
+            {{ authStore.fieldErrors.email }}
+          </p>
         </div>
 
         <div class="form-group">
@@ -69,25 +72,35 @@ if (authStore.isAuthenticated) {
               {{ showPassword ? 'Masquer' : 'Afficher' }}
             </button>
           </div>
+          <p v-if="authStore.fieldErrors.password" class="small" style="color: var(--destructive-color)">
+            {{ authStore.fieldErrors.password }}
+          </p>
         </div>
 
-        <p v-if="authStore.error" class="small" style="color: var(--destructive-color);">
+        <p v-if="authStore.error && !Object.keys(authStore.fieldErrors).length" class="small" style="color: var(--destructive-color)">
           {{ authStore.error }}
         </p>
 
-        <button type="submit" class="primary medium full-width" :disabled="authStore.isLoading as boolean">
+        <button
+          type="submit"
+          class="primary medium full-width"
+          :disabled="authStore.isLoading as boolean"
+        >
           {{ authStore.isLoading ? 'Création...' : "S'inscrire" }}
         </button>
 
         <p class="tiny muted center">
-          En continuant, vous acceptez nos <a>Conditions</a> et notre <a>Politique de confidentialité</a>.
+          En continuant, vous acceptez nos <a>Conditions</a> et notre
+          <a>Politique de confidentialité</a>.
         </p>
       </form>
 
       <div class="auth-card-foot">
         <p class="small muted center">
           Déjà un compte ?
-          <RouterLink to="/auth/login" class="ghost" style="display: inline; padding: 0;">Se connecter</RouterLink>
+          <RouterLink to="/auth/login" class="ghost" style="display: inline; padding: 0"
+            >Se connecter</RouterLink
+          >
         </p>
       </div>
     </div>

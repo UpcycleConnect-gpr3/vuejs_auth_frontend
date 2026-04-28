@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import type { AuthCredentials } from '@/types/auth.ts'
 import { useAuthStore } from '@/stores/auth.ts'
 
 const showPassword = ref(false)
 const authStore = useAuthStore()
+const router = useRouter()
 
-const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL ?? 'http://upcycle-front.localhost'
+const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL
 
 const form = reactive<AuthCredentials>({
   email: '',
@@ -15,7 +16,7 @@ const form = reactive<AuthCredentials>({
 })
 
 async function handleLogin() {
-  await authStore.login(form)
+  await authStore.login(form, router)
   if (authStore.isAuthenticated) {
     window.location.href = upcycleUrl
   }
@@ -51,6 +52,9 @@ if (authStore.isAuthenticated) {
             autocomplete="email"
             required
           />
+          <p v-if="authStore.fieldErrors.email" class="small" style="color: var(--destructive-color)">
+            {{ authStore.fieldErrors.email }}
+          </p>
         </div>
 
         <div class="form-group">
@@ -72,13 +76,20 @@ if (authStore.isAuthenticated) {
               {{ showPassword ? 'Masquer' : 'Afficher' }}
             </button>
           </div>
+          <p v-if="authStore.fieldErrors.password" class="small" style="color: var(--destructive-color)">
+            {{ authStore.fieldErrors.password }}
+          </p>
         </div>
 
-        <p v-if="authStore.error" class="small" style="color: var(--destructive-color);">
+        <p v-if="authStore.error && !Object.keys(authStore.fieldErrors).length" class="small" style="color: var(--destructive-color)">
           {{ authStore.error }}
         </p>
 
-        <button type="submit" class="primary medium full-width" :disabled="authStore.isLoading as boolean">
+        <button
+          type="submit"
+          class="primary medium full-width"
+          :disabled="authStore.isLoading as boolean"
+        >
           {{ authStore.isLoading ? 'Connexion...' : 'Se connecter' }}
         </button>
       </form>
@@ -86,7 +97,9 @@ if (authStore.isAuthenticated) {
       <div class="auth-card-foot">
         <p class="small muted center">
           Pas encore de compte ?
-          <RouterLink to="/auth/register" class="ghost" style="display: inline; padding: 0;">Créer un compte</RouterLink>
+          <RouterLink to="/auth/register" class="ghost" style="display: inline; padding: 0"
+            >Créer un compte</RouterLink
+          >
         </p>
       </div>
     </div>

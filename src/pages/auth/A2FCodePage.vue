@@ -1,26 +1,14 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { RouterLink } from 'vue-router'
+import { ref, computed } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
+import { useAuthStore } from '@/stores/auth.ts'
+
+const authStore = useAuthStore()
+const router = useRouter()
 
 const code = ref('')
-const email = ref('vous@exemple.com')
-const isVerifying = ref(false)
-const error = ref<string | null>(null)
 
 const isComplete = computed(() => code.value.length === 6)
-
-const resendCountdown = ref(45)
-let timer: ReturnType<typeof setInterval> | null = null
-
-onMounted(() => {
-  timer = setInterval(() => {
-    if (resendCountdown.value > 0) resendCountdown.value--
-  }, 1000)
-})
-
-onUnmounted(() => {
-  if (timer) clearInterval(timer)
-})
 
 function handleInput(e: Event) {
   const target = e.target as HTMLInputElement
@@ -31,18 +19,7 @@ function handleInput(e: Event) {
 
 async function handleVerify() {
   if (!isComplete.value) return
-  isVerifying.value = true
-  error.value = null
-  console.log('Verify:', code.value)
-  setTimeout(() => {
-    isVerifying.value = false
-  }, 800)
-}
-
-function handleResend() {
-  if (resendCountdown.value > 0) return
-  resendCountdown.value = 45
-  console.log('Resend code')
+  await authStore.loginTotp({ code: code.value, hash: authStore.hash }, router)
 }
 </script>
 
@@ -54,59 +31,47 @@ function handleResend() {
           <div class="logo-dot"></div>
           <span>UpcycleConnect</span>
         </RouterLink>
-        <span class="eyebrow">Vérification à 2 facteurs</span>
-        <h1 class="bold">Vérifiez<br />votre compte</h1>
-        <p>
-          Nous avons envoyé un code à 6 chiffres à
-          <strong style="color: var(--lime-500);">{{ email }}</strong>.
-          Entrez-le ci-dessous pour continuer.
+        <span class="eyebrow">Vérification à deux facteurs</span>
+        <h1 class="bold">Confirmez votre identité</h1>
+        <p class="muted measure">
+          Ouvrez votre application d'authentification et entrez le code à 6 chiffres généré.
         </p>
       </div>
 
-      <form class="auth-form" @submit.prevent="handleVerify">
+      <form @submit.prevent="handleVerify" class="auth-form">
         <div class="form-group">
-          <label for="otp" class="uppercase">Code de vérification</label>
+          <label for="otp">Code 2FA</label>
           <input
             id="otp"
-            :value="code"
+            v-model="code"
             type="text"
             inputmode="numeric"
             autocomplete="one-time-code"
             maxlength="6"
-            class="primary large full-width otp-single"
+            class="primary medium full-width"
             placeholder="••••••"
             @input="handleInput"
           />
+          <p v-if="authStore.fieldErrors.code" class="small" style="color: var(--destructive-color)">
+            {{ authStore.fieldErrors.code }}
+          </p>
         </div>
 
-        <p v-if="error" class="small" style="color: var(--destructive-color);">{{ error }}</p>
+        <p v-if="authStore.error && !Object.keys(authStore.fieldErrors).length" class="small" style="color: var(--destructive-color)">
+          {{ authStore.error }}
+        </p>
 
         <button
           type="submit"
           class="primary medium full-width"
-          :disabled="!isComplete || isVerifying"
+          :disabled="!isComplete || authStore.isLoading"
         >
-          {{ isVerifying ? 'Vérification…' : 'Vérifier le code' }}
+          {{ authStore.isLoading ? 'Vérification...' : 'Confirmer' }}
         </button>
-
-        <div class="resend-row">
-          <span class="small text-subtle">Vous n'avez pas reçu de code ?</span>
-          <button
-            type="button"
-            class="ghost small resend-btn"
-            :disabled="resendCountdown > 0"
-            @click="handleResend"
-          >
-            <span v-if="resendCountdown > 0">Renvoyer dans {{ resendCountdown }}s</span>
-            <span v-else>Renvoyer le code</span>
-          </button>
-        </div>
       </form>
 
       <div class="auth-card-foot">
-        <p class="small muted center">
-          <RouterLink to="/auth/login" style="color: var(--lime-500);">← Retour à la connexion</RouterLink>
-        </p>
+        <RouterLink to="/auth/login" class="ghost small">← Retour à la connexion</RouterLink>
       </div>
     </div>
   </main>

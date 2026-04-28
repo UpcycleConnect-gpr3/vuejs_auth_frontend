@@ -2,8 +2,8 @@
 import { RouterLink, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.ts'
 
-const router = useRouter()
 const authStore = useAuthStore()
+const router = useRouter()
 
 const settingsNav = [
   {
@@ -33,9 +33,8 @@ const settingsNav = [
   },
 ]
 
-function handleLogout() {
-  authStore.bearerToken = ''
-  router.push({ name: 'login' })
+const handleLogout = async () => {
+  await authStore.logout(router)
 }
 </script>
 
@@ -52,7 +51,9 @@ function handleLogout() {
         <ul class="sidebar-nav-list">
           <li v-for="item in settingsNav" :key="item.to" class="sidebar-nav-item">
             <RouterLink :to="item.to">
-              <svg class="sidebar-icon" viewBox="0 0 256 256" fill="currentColor"><path :d="item.icon" /></svg>
+              <svg class="sidebar-icon" viewBox="0 0 256 256" fill="currentColor">
+                <path :d="item.icon" />
+              </svg>
               <span>{{ item.label }}</span>
             </RouterLink>
           </li>
@@ -66,7 +67,11 @@ function handleLogout() {
           <span class="sidebar-user-role">Utilisateur</span>
         </div>
         <button class="sidebar-user-action" title="Se déconnecter" @click="handleLogout">
-          <svg viewBox="0 0 256 256" fill="currentColor"><path d="M120,216a8,8,0,0,1-8,8H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h64a8,8,0,0,1,0,16H48V208h64A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z" /></svg>
+          <svg viewBox="0 0 256 256" fill="currentColor">
+            <path
+              d="M120,216a8,8,0,0,1-8,8H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h64a8,8,0,0,1,0,16H48V208h64A8,8,0,0,1,120,216Zm109.66-93.66-40-40a8,8,0,0,0-11.32,11.32L204.69,120H112a8,8,0,0,0,0,16h92.69l-26.35,26.34a8,8,0,0,0,11.32,11.32l40-40A8,8,0,0,0,229.66,122.34Z"
+            />
+          </svg>
         </button>
       </div>
     </aside>

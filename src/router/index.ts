@@ -15,11 +15,11 @@ const router = createRouter({
     { path: '/auth/forgot-password', component: ForgotPage, name: 'forgot-password' },
     { path: '/auth/a2f-code', component: A2FCodePage, name: 'a2f-code' },
 
-    { path: '/settings/profile', component: ProfilePage, meta: { requiresAuth: true } },
-    { path: '/settings/account', component: AccountPage, meta: { requiresAuth: true } },
-    { path: '/settings/billing', component: BillingPage, meta: { requiresAuth: true } },
-    { path: '/settings/notifications', component: NotificationPage, meta: { requiresAuth: true } },
-    { path: '/settings/teams', component: OrganizationPage, meta: { requiresAuth: true } },
+    { path: '/settings/profile', component: ProfilePage, meta: { requiresAuth: true }, name: 'profile' },
+    { path: '/settings/account', component: AccountPage, meta: { requiresAuth: true }, name: 'account' },
+    { path: '/settings/billing', component: BillingPage, meta: { requiresAuth: true }, name: 'billing' },
+    { path: '/settings/notifications', component: NotificationPage, meta: { requiresAuth: true }, name: 'notifications' },
+    { path: '/settings/teams', component: OrganizationPage, meta: { requiresAuth: true }, name: 'teams' },
   ],
 })
 
