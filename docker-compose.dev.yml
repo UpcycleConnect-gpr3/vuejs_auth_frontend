@@ -1,0 +1,9 @@
+services:
+  auth_front:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - ./src:/app/src
+    ports:
+      - "4284:5173"
