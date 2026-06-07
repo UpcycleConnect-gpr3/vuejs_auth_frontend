@@ -262,5 +262,3 @@ onMounted(() => {
     </section>
   </SettingsLayout>
 </template>
-
-<style scoped></style>
