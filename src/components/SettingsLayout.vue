@@ -1,9 +1,20 @@
 <script setup lang="ts">
 import { RouterLink, useRouter } from 'vue-router'
 import { useAuthStore } from '@/stores/auth.ts'
+import { useUserStore } from '@/stores/user.ts'
+import { computed } from 'vue'
 
 const authStore = useAuthStore()
+const userStore = useUserStore()
 const router = useRouter()
+
+const fullName = computed(() => userStore.fullName || 'Utilisateur')
+const userRole = computed(() => userStore.user?.role || 'Utilisateur')
+const initials = computed(() => {
+  const first = userStore.user?.firstname?.charAt(0) || ''
+  const last = userStore.user?.lastname?.charAt(0) || ''
+  return (first + last).toUpperCase() || 'U'
+})
 
 const settingsNav = [
   {
@@ -15,11 +26,6 @@ const settingsNav = [
     label: 'Compte',
     to: '/settings/account',
     icon: 'M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160Zm88-29.84q.06-2.16,0-4.32l14.92-18.64a8,8,0,0,0,1.48-7.06,107.21,107.21,0,0,0-10.88-26.25,8,8,0,0,0-6-3.93l-23.72-2.64q-1.48-1.56-3-3L186,40.54a8,8,0,0,0-3.94-6,107.71,107.71,0,0,0-26.25-10.87,8,8,0,0,0-7.06,1.49L130.16,40Q128,40,125.84,40L107.2,25.11a8,8,0,0,0-7.06-1.48A107.6,107.6,0,0,0,73.89,34.51a8,8,0,0,0-3.93,6L67.32,64.27q-1.56,1.49-3,3L40.54,70a8,8,0,0,0-6,3.94,107.71,107.71,0,0,0-10.87,26.25,8,8,0,0,0,1.49,7.06L40,125.84Q40,128,40,130.16L25.11,148.8a8,8,0,0,0-1.48,7.06,107.21,107.21,0,0,0,10.88,26.25,8,8,0,0,0,6,3.93l23.72,2.64q1.49,1.56,3,3L70,215.46a8,8,0,0,0,3.94,6,107.71,107.71,0,0,0,26.25,10.87,8,8,0,0,0,7.06-1.49L125.84,216q2.16.06,4.32,0l18.64,14.92a8,8,0,0,0,7.06,1.48,107.21,107.21,0,0,0,26.25-10.88,8,8,0,0,0,3.93-6l2.64-23.72q1.56-1.48,3-3L215.46,186a8,8,0,0,0,6-3.94,107.71,107.71,0,0,0,10.87-26.25,8,8,0,0,0-1.49-7.06Z',
-  },
-  {
-    label: 'Organisation',
-    to: '/settings/teams',
-    icon: 'M117.25,157.92a60,60,0,1,0-66.5,0A95.83,95.83,0,0,0,3.53,195.63a8,8,0,1,0,13.4,8.74,80,80,0,0,1,134.14,0,8,8,0,0,0,13.4-8.74A95.83,95.83,0,0,0,117.25,157.92ZM40,108a44,44,0,1,1,44,44A44.05,44.05,0,0,1,40,108Zm210.14,98.7a8,8,0,0,1-11.07-2.33A79.83,79.83,0,0,0,172,168a8,8,0,0,1,0-16,44,44,0,1,0-16.34-84.87,8,8,0,1,1-5.94-14.85,60,60,0,0,1,55.53,105.64,96.1,96.1,0,0,1,52.22,42A8,8,0,0,1,250.14,206.7Z',
   },
   {
     label: 'Facturation',
@@ -61,10 +67,10 @@ const handleLogout = async () => {
       </nav>
 
       <div class="sidebar-user">
-        <div class="sidebar-user-avatar">JD</div>
+        <div class="sidebar-user-avatar">{{ initials }}</div>
         <div class="sidebar-user-info">
-          <span class="sidebar-user-name">Jean Dupont</span>
-          <span class="sidebar-user-role">Utilisateur</span>
+          <span class="sidebar-user-name">{{ fullName }}</span>
+          <span class="sidebar-user-role">{{ userRole }}</span>
         </div>
         <button class="sidebar-user-action" title="Se déconnecter" @click="handleLogout">
           <svg viewBox="0 0 256 256" fill="currentColor">

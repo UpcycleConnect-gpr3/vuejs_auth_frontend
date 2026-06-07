@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import {
   ForgotPage, LoginPage, RegisterPage, A2FCodePage,
-  ProfilePage, AccountPage, BillingPage, NotificationPage, OrganizationPage,
+  ProfilePage, AccountPage, BillingPage, NotificationPage,
 } from '@/pages'
 import { useAuthStore } from '@/stores/auth.ts'
 
@@ -19,7 +19,6 @@ const router = createRouter({
     { path: '/settings/account', component: AccountPage, meta: { requiresAuth: true }, name: 'account' },
     { path: '/settings/billing', component: BillingPage, meta: { requiresAuth: true }, name: 'billing' },
     { path: '/settings/notifications', component: NotificationPage, meta: { requiresAuth: true }, name: 'notifications' },
-    { path: '/settings/teams', component: OrganizationPage, meta: { requiresAuth: true }, name: 'teams' },
   ],
 })
 
