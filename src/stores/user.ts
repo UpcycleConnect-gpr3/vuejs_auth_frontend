@@ -14,7 +14,6 @@ export const useUserStore = defineStore('user', () => {
   const isLoading = ref<boolean>(false)
   const error = ref<string | null>(null)
 
-  // Instance axios avec Authorization header
   const authApi = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
     headers: {
