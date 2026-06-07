@@ -1,12 +1,16 @@
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, shallowRef } from 'vue'
+import { useRouter } from 'vue-router'
 import { useQRCode } from '@vueuse/integrations/useQRCode'
 import SettingsLayout from '@/components/SettingsLayout.vue'
 import { useUserStore } from '@/stores/user.ts'
 import { useTotpStore } from '@/stores/totp.ts'
+import { useAuthStore } from '@/stores/auth.ts'
 
 const userStore = useUserStore()
 const totpStore = useTotpStore()
+const authStore = useAuthStore()
+const router = useRouter()
 
 const emailForm = reactive({
   email: '',
@@ -76,6 +80,17 @@ const handleCancelTotpSetup = () => {
   showTotpSetup.value = false
   totpCode.value = ''
   totpStore.clearTotpUrl()
+}
+
+const handleDeleteAccount = async () => {
+  if (!confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')) {
+    return
+  }
+  const success = await userStore.deleteUser()
+  if (success) {
+    await userStore.clearUser()
+    await authStore.logout(router)
+  }
 }
 
 onMounted(() => {
@@ -239,7 +254,9 @@ onMounted(() => {
             <p class="medium">Supprimer le compte</p>
             <p class="small muted">Efface définitivement votre compte et toutes vos données.</p>
           </div>
-          <button class="destructive medium">Supprimer</button>
+          <button class="destructive medium" :disabled="isLoading" @click="handleDeleteAccount">
+            {{ isLoading ? 'Suppression...' : 'Supprimer' }}
+          </button>
         </div>
       </div>
     </section>

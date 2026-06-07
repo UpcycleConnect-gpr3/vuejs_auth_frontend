@@ -118,6 +118,26 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
+  const deleteUser = async (): Promise<boolean> => {
+    setLoading(true)
+    resetError()
+
+    try {
+      const response = await authApi.delete<{ success: boolean; message: string }>('/user/')
+      if (!response.data.success) throw new Error(response.data.message || 'La requête a échouée.')
+
+      clearUser()
+      return true
+    } catch (err: unknown) {
+      const apiError = (err as { response?: { data?: ApiError } }).response?.data
+      setError(apiError?.message || 'Une erreur est survenue')
+      setFieldErrors(apiError)
+      return false
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return {
     user,
     isLoading,
@@ -128,6 +148,7 @@ export const useUserStore = defineStore('user', () => {
     fetchUser,
     updateUser,
     updatePassword,
+    deleteUser,
     setUser,
     clearUser,
     resetError,
