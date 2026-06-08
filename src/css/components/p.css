@@ -1,16 +1,16 @@
 p {
-    background-color: var(--p-background-color);
-    color: var(--p-text-color);
-    border-color: var(--p-border-color);
+  background-color: var(--p-background-color);
+  color: var(--p-text-color);
+  border-color: var(--p-border-color);
 
-    font-size: var(--p-font-size);
-    font-weight: var(--p-font-weight);
-    font-family: var(--p-font-family);
+  font-size: var(--p-font-size);
+  font-weight: var(--p-font-weight);
+  font-family: var(--p-font-family);
 
-    letter-spacing: var(--p-letter-spacing);
-    line-height: var(--p-line-height, 1.6);
-    text-transform: var(--p-text-transform);
-    text-align: var(--p-text-align);
-    text-wrap: pretty;
-    max-width: var(--p-max-width, none);
+  letter-spacing: var(--p-letter-spacing);
+  line-height: var(--p-line-height, 1.6);
+  text-transform: var(--p-text-transform);
+  text-align: var(--p-text-align);
+  text-wrap: pretty;
+  max-width: var(--p-max-width, none);
 }

@@ -3,9 +3,11 @@ import { ref, reactive } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import type { AuthCredentials } from '@/types/auth.ts'
 import { useAuthStore } from '@/stores/auth.ts'
+import { useToastsStore } from '@/stores/toasts.ts'
 
 const showPassword = ref(false)
 const authStore = useAuthStore()
+const toasts = useToastsStore()
 const router = useRouter()
 
 const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL
@@ -18,7 +20,10 @@ const form = reactive<AuthCredentials>({
 async function handleLogin() {
   await authStore.login(form, router)
   if (authStore.isAuthenticated) {
+    toasts.push({ type: 'success', message: 'Connexion réussie.' })
     window.location.href = upcycleUrl
+  } else if (authStore.error) {
+    toasts.push({ type: 'error', message: authStore.error ?? 'Une erreur est survenue' })
   }
 }
 
@@ -52,7 +57,11 @@ if (authStore.isAuthenticated) {
             autocomplete="email"
             required
           />
-          <p v-if="authStore.fieldErrors.email" class="small" style="color: var(--destructive-color)">
+          <p
+            v-if="authStore.fieldErrors.email"
+            class="small"
+            style="color: var(--destructive-color)"
+          >
             {{ authStore.fieldErrors.email }}
           </p>
         </div>
@@ -76,12 +85,20 @@ if (authStore.isAuthenticated) {
               {{ showPassword ? 'Masquer' : 'Afficher' }}
             </button>
           </div>
-          <p v-if="authStore.fieldErrors.password" class="small" style="color: var(--destructive-color)">
+          <p
+            v-if="authStore.fieldErrors.password"
+            class="small"
+            style="color: var(--destructive-color)"
+          >
             {{ authStore.fieldErrors.password }}
           </p>
         </div>
 
-        <p v-if="authStore.error && !Object.keys(authStore.fieldErrors).length" class="small" style="color: var(--destructive-color)">
+        <p
+          v-if="authStore.error && !Object.keys(authStore.fieldErrors).length"
+          class="small"
+          style="color: var(--destructive-color)"
+        >
           {{ authStore.error }}
         </p>
 

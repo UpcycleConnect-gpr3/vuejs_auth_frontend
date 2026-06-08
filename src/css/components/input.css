@@ -1,57 +1,63 @@
-input[type='text'], input[type='password'], input[type='email'], input[type='number'], input[type='search'], textarea, select {
-    height: var(--input-height);
-    width: var(--input-width);
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='number'],
+input[type='search'],
+textarea,
+select {
+  height: var(--input-height);
+  width: var(--input-width);
 
-    padding: 0 var(--input-padding-x);
+  padding: 0 var(--input-padding-x);
 
-    border-radius: var(--input-border-radius);
-    background-color: var(--input-bg-color);
-    color: var(--input-text-color);
-    border-color: var(--input-border-color);
-    border-width: var(--input-border-width);
-    border-style: var(--input-border-style);
+  border-radius: var(--input-border-radius);
+  background-color: var(--input-bg-color);
+  color: var(--input-text-color);
+  border-color: var(--input-border-color);
+  border-width: var(--input-border-width);
+  border-style: var(--input-border-style);
 
-    font-size: var(--input-font-size);
-    font-weight: var(--input-font-weight);
-    font-family: var(--input-font-family);
-    letter-spacing: var(--input-letter-spacing);
-    text-align: var(--input-text-align);
+  font-size: var(--input-font-size);
+  font-weight: var(--input-font-weight);
+  font-family: var(--input-font-family);
+  letter-spacing: var(--input-letter-spacing);
+  text-align: var(--input-text-align);
 
-    opacity: var(--input-opacity);
-    transition:
-        background-color var(--transition-base),
-        border-color var(--transition-base),
-        color var(--transition-base);
+  opacity: var(--input-opacity);
+  transition:
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    color var(--transition-base);
 
-    &::placeholder {
-        color: var(--text-tertiary);
-    }
+  &::placeholder {
+    color: var(--text-tertiary);
+  }
 
-    &:disabled {
-        background-color: var(--input-disabled-bg-color);
-        color: var(--input-disabled-text-color);
-        opacity: var(--input-disabled-opacity);
-        border-color: var(--input-disabled-border-color);
-        cursor: not-allowed;
-    }
+  &:disabled {
+    background-color: var(--input-disabled-bg-color);
+    color: var(--input-disabled-text-color);
+    opacity: var(--input-disabled-opacity);
+    border-color: var(--input-disabled-border-color);
+    cursor: not-allowed;
+  }
 
-    &:not(:disabled):hover {
-        background-color: var(--input-hover-bg-color);
-        color: var(--input-hover-text-color);
-        border-color: var(--input-hover-border-color);
-    }
+  &:not(:disabled):hover {
+    background-color: var(--input-hover-bg-color);
+    color: var(--input-hover-text-color);
+    border-color: var(--input-hover-border-color);
+  }
 
-    &:not(:disabled):focus-visible {
-        outline: 2px solid var(--lime-500);
-        outline-offset: 2px;
-        border-color: var(--lime-500);
-        background-color: var(--input-focus-bg-color);
-    }
+  &:not(:disabled):focus-visible {
+    outline: 2px solid var(--lime-500);
+    outline-offset: 2px;
+    border-color: var(--lime-500);
+    background-color: var(--input-focus-bg-color);
+  }
 }
 
 textarea {
-    min-height: var(--textarea-min-height, 120px);
-    resize: vertical;
-    padding: var(--space-3) var(--input-padding-x);
-    line-height: var(--line-height-normal);
+  min-height: var(--textarea-min-height, 120px);
+  resize: vertical;
+  padding: var(--space-3) var(--input-padding-x);
+  line-height: var(--line-height-normal);
 }

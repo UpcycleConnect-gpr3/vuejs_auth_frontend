@@ -21,3 +21,7 @@ export interface TotpLoginResponse {
 export interface RegisterResponse {
   user_id: string
 }
+
+export interface TotpSetupResponse {
+  totp_url: string
+}

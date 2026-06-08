@@ -1,22 +1,24 @@
 label {
-    --label-bg-color: transparent;
-    --label-text-color: var(--text-secondary);
-    --label-font-size: var(--font-size-small);
-    --label-font-weight: var(--font-weight-medium);
-    --label-font-family: var(--font-family-component);
-    --label-letter-spacing: var(--letter-spacing-normal);
-    --label-text-transform: none;
-    --label-text-align: left;
+  --label-bg-color: transparent;
+  --label-text-color: var(--text-secondary);
+  --label-font-size: var(--font-size-small);
+  --label-font-weight: var(--font-weight-medium);
+  --label-font-family: var(--font-family-component);
+  --label-letter-spacing: var(--letter-spacing-normal);
+  --label-text-transform: none;
+  --label-text-align: left;
 
-    cursor: pointer;
-    user-select: none;
+  cursor: pointer;
+  user-select: none;
 
-    &.uppercase {
-        --label-text-transform: uppercase;
-        --label-font-size: var(--font-size-xs);
-        --label-font-weight: var(--font-weight-semibold);
-        letter-spacing: 0.08em;
-    }
+  &.uppercase {
+    --label-text-transform: uppercase;
+    --label-font-size: var(--font-size-xs);
+    --label-font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.08em;
+  }
 
-    &.large { --label-font-size: var(--font-size-medium); }
+  &.large {
+    --label-font-size: var(--font-size-medium);
+  }
 }

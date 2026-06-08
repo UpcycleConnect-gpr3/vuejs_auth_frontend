@@ -8,23 +8,23 @@ Accès : `http://auth-front.localhost` (Docker) ou `http://localhost:5173`
 
 ### Auth (publiques)
 
-| Chemin | Composant | Description |
-|---|---|---|
-| `/` | redirect | Redirige vers `/settings/profile` |
-| `/auth/login` | `LoginPage` | Connexion (email + password + lien forgot) |
-| `/auth/register` | `RegisterPage` | Inscription |
-| `/auth/forgot-password` | `ForgotPage` | Demande de réinitialisation |
-| `/auth/a2f-code` | `A2FCodePage` | Code OTP à 6 chiffres (single input, countdown renvoi) |
+| Chemin | Composant | Description | Liens |
+|---|---|---|---|
+| `/` | redirect | Redirige vers `/settings/profile` | [docker](http://auth-front.localhost/) · [local](http://localhost:5173/) |
+| `/auth/login` | `LoginPage` | Connexion (email + password + lien forgot) | [docker](http://auth-front.localhost/auth/login) · [local](http://localhost:5173/auth/login) |
+| `/auth/register` | `RegisterPage` | Inscription | [docker](http://auth-front.localhost/auth/register) · [local](http://localhost:5173/auth/register) |
+| `/auth/forgot-password` | `ForgotPage` | Demande de réinitialisation | [docker](http://auth-front.localhost/auth/forgot-password) · [local](http://localhost:5173/auth/forgot-password) |
+| `/auth/a2f-code` | `A2FCodePage` | Code OTP à 6 chiffres (single input, countdown renvoi) | [docker](http://auth-front.localhost/auth/a2f-code) · [local](http://localhost:5173/auth/a2f-code) |
 
 ### Settings (protégées — `meta.requiresAuth`)
 
-| Chemin | Composant | Description |
-|---|---|---|
-| `/settings/profile` | `ProfilePage` | Photo, identité (prénom/nom/username), bio |
-| `/settings/account` | `AccountPage` | Email, mot de passe, 2FA toggle, suppression de compte |
-| `/settings/billing` | `BillingPage` | Plan actuel, moyen de paiement, historique factures |
-| `/settings/notifications` | `NotificationPage` | Toggles email & push par catégorie |
-| `/settings/teams` | `OrganizationPage` | Infos organisation, invitation, table des membres |
+| Chemin | Composant | Description | Liens |
+|---|---|---|---|
+| `/settings/profile` | `ProfilePage` | Photo, identité (prénom/nom/username), bio | [docker](http://auth-front.localhost/settings/profile) · [local](http://localhost:5173/settings/profile) |
+| `/settings/account` | `AccountPage` | Email, mot de passe, 2FA toggle, suppression de compte | [docker](http://auth-front.localhost/settings/account) · [local](http://localhost:5173/settings/account) |
+| `/settings/billing` | `BillingPage` | Plan actuel, moyen de paiement, historique factures | [docker](http://auth-front.localhost/settings/billing) · [local](http://localhost:5173/settings/billing) |
+| `/settings/notifications` | `NotificationPage` | Toggles email & push par catégorie | [docker](http://auth-front.localhost/settings/notifications) · [local](http://localhost:5173/settings/notifications) |
+| `/settings/teams` | `OrganizationPage` | Infos organisation, invitation, table des membres | [docker](http://auth-front.localhost/settings/teams) · [local](http://localhost:5173/settings/teams) |
 
 ## Composants
 

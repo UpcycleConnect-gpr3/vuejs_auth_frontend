@@ -52,12 +52,20 @@ async function handleVerify() {
             placeholder="••••••"
             @input="handleInput"
           />
-          <p v-if="authStore.fieldErrors.code" class="small" style="color: var(--destructive-color)">
+          <p
+            v-if="authStore.fieldErrors.code"
+            class="small"
+            style="color: var(--destructive-color)"
+          >
             {{ authStore.fieldErrors.code }}
           </p>
         </div>
 
-        <p v-if="authStore.error && !Object.keys(authStore.fieldErrors).length" class="small" style="color: var(--destructive-color)">
+        <p
+          v-if="authStore.error && !Object.keys(authStore.fieldErrors).length"
+          class="small"
+          style="color: var(--destructive-color)"
+        >
           {{ authStore.error }}
         </p>
 

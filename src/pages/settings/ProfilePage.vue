@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 import SettingsLayout from '@/components/SettingsLayout.vue'
-import { useAuthStore } from '@/stores/auth.ts'
 
+// There is no /auth/me or profile-update endpoint, so the fields cannot be
+// hydrated or saved. They remain visible but disabled with a notice.
 const form = reactive({
   firstname: 'Jean',
   lastname: 'Dupont',
   username: 'jeandupont',
   bio: '',
 })
-
-const authStore = useAuthStore()
 </script>
 
 <template>
@@ -32,10 +31,11 @@ const authStore = useAuthStore()
         <div class="layout-flex layout-gap-large layout-items-center">
           <div class="avatar-placeholder">JD</div>
           <div class="layout-flex layout-gap-medium">
-            <button class="primary small">Changer la photo</button>
-            <button class="ghost small">Supprimer</button>
+            <button class="primary small" type="button" disabled>Changer la photo</button>
+            <button class="ghost small" type="button" disabled>Supprimer</button>
           </div>
         </div>
+        <p class="small muted">Fonctionnalité bientôt disponible.</p>
       </div>
     </section>
 
@@ -56,6 +56,7 @@ const authStore = useAuthStore()
                 v-model="form.firstname"
                 type="text"
                 class="primary medium full-width"
+                disabled
               />
             </div>
             <div class="form-group" style="flex: 1">
@@ -65,6 +66,7 @@ const authStore = useAuthStore()
                 v-model="form.lastname"
                 type="text"
                 class="primary medium full-width"
+                disabled
               />
             </div>
           </div>
@@ -76,8 +78,10 @@ const authStore = useAuthStore()
               type="text"
               class="primary medium full-width"
               placeholder="@jeandupont"
+              disabled
             />
           </div>
+          <p class="small muted">L'édition du profil sera bientôt disponible.</p>
         </form>
       </div>
     </section>
@@ -98,14 +102,18 @@ const authStore = useAuthStore()
             class="primary full-width"
             rows="5"
             placeholder="Parlez-nous de vous..."
+            disabled
           ></textarea>
         </div>
       </div>
     </section>
 
     <footer class="settings-footer">
-      <button class="ghost medium">Annuler</button>
-      <button class="primary medium">Sauvegarder</button>
+      <span class="small muted" style="margin-right: auto; align-self: center">
+        Fonctionnalité bientôt disponible.
+      </span>
+      <button class="ghost medium" type="button" disabled>Annuler</button>
+      <button class="primary medium" type="button" disabled>Sauvegarder</button>
     </footer>
   </SettingsLayout>
 </template>
