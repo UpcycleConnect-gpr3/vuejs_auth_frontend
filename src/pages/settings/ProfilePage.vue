@@ -1,16 +1,39 @@
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, onMounted, computed } from 'vue'
 import SettingsLayout from '@/components/SettingsLayout.vue'
 import { useAuthStore } from '@/stores/auth.ts'
-
-const form = reactive({
-  firstname: 'Jean',
-  lastname: 'Dupont',
-  username: 'jeandupont',
-  bio: '',
-})
+import { useUserStore } from '@/stores/user.ts'
 
 const authStore = useAuthStore()
+const userStore = useUserStore()
+
+const form = reactive({
+  firstname: '',
+  lastname: '',
+})
+
+const isLoading = computed(() => userStore.isLoading)
+const error = computed(() => userStore.error)
+const fullName = computed(() => userStore.fullName)
+
+const loadUserData = async () => {
+  await userStore.fetchUser()
+  if (userStore.user) {
+    form.firstname = userStore.user.firstname || ''
+    form.lastname = userStore.user.lastname || ''
+  }
+}
+
+const handleSave = async () => {
+  await userStore.updateUser({
+    firstname: form.firstname,
+    lastname: form.lastname,
+  })
+}
+
+onMounted(() => {
+  loadUserData()
+})
 </script>
 
 <template>
@@ -23,28 +46,18 @@ const authStore = useAuthStore()
       </p>
     </header>
 
-    <section class="settings-section">
-      <div class="settings-section-head">
-        <h4>Photo de profil</h4>
-        <p class="small muted">JPG ou PNG. 1 Mo max.</p>
-      </div>
-      <div class="settings-section-body">
-        <div class="layout-flex layout-gap-large layout-items-center">
-          <div class="avatar-placeholder">JD</div>
-          <div class="layout-flex layout-gap-medium">
-            <button class="primary small">Changer la photo</button>
-            <button class="ghost small">Supprimer</button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div v-if="isLoading" class="loading-overlay">
+      <p>Chargement des informations utilisateur...</p>
+    </div>
 
-    <div class="divider"></div>
-
+    <div v-if="error" class="error-message">
+      <p>{{ error }}</p>
+      <button @click="loadUserData" class="ghost small">Réessayer</button>
+    </div>
     <section class="settings-section">
       <div class="settings-section-head">
         <h4>Identité</h4>
-        <p class="small muted">Votre prénom, nom et pseudonyme.</p>
+        <p class="small muted">Votre prénom et nom.</p>
       </div>
       <div class="settings-section-body">
         <form class="layout-flex layout-columns layout-gap-medium">
@@ -68,44 +81,14 @@ const authStore = useAuthStore()
               />
             </div>
           </div>
-          <div class="form-group">
-            <label for="username">Nom d'utilisateur</label>
-            <input
-              id="username"
-              v-model="form.username"
-              type="text"
-              class="primary medium full-width"
-              placeholder="@jeandupont"
-            />
-          </div>
         </form>
       </div>
     </section>
 
-    <div class="divider"></div>
-
-    <section class="settings-section">
-      <div class="settings-section-head">
-        <h4>Bio</h4>
-        <p class="small muted">Une courte description publique de vous.</p>
-      </div>
-      <div class="settings-section-body">
-        <div class="form-group">
-          <label for="bio">À propos de vous</label>
-          <textarea
-            id="bio"
-            v-model="form.bio"
-            class="primary full-width"
-            rows="5"
-            placeholder="Parlez-nous de vous..."
-          ></textarea>
-        </div>
-      </div>
-    </section>
-
     <footer class="settings-footer">
-      <button class="ghost medium">Annuler</button>
-      <button class="primary medium">Sauvegarder</button>
+      <button class="primary medium" :disabled="isLoading" @click="handleSave">
+        {{ isLoading ? 'Sauvegarde...' : 'Sauvegarder' }}
+      </button>
     </footer>
   </SettingsLayout>
 </template>
