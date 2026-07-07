@@ -15,7 +15,7 @@ const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL
 // l'API (GET /roles/user-selectable/), celle-ci sert de repli hors-ligne.
 const ROLE_LABELS: Record<string, string> = {
   professional: 'Professionnel',
-  provider: 'Prestataire',
+  provider: 'Particulier',
   creator: 'Créateur',
 }
 
