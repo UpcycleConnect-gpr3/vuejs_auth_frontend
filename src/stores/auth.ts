@@ -4,6 +4,7 @@ import api from '@/services/api.ts'
 import type {
   AuthCredentials,
   LoginResponse,
+  RegisterCredentials,
   RegisterResponse,
   TotpLoginCredentials,
   TotpLoginResponse,
@@ -49,6 +50,7 @@ export const useAuthStore = defineStore('auth', () => {
   const { fieldErrors, setFieldErrors, clearFieldErrors } = useApiErrors()
 
   const bearerToken = ref<string>('')
+  const role = ref<string>('')
   const hash = ref<string>('')
   const isLoading = ref<boolean>(false)
   const error = ref<string | null>(null)
@@ -65,6 +67,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   const clearToken = async () => {
     bearerToken.value = ''
+    role.value = ''
     if (hasCookieStore()) {
       await cookieStore.delete(TOKEN_COOKIE_NAME, { domain: COOKIE_DOMAIN })
     } else {
@@ -88,9 +91,10 @@ export const useAuthStore = defineStore('auth', () => {
       const response = await api.post<ApiResponse<LoginResponse>>('/auth/login/', credentials)
       if (!response.data.success) throw new Error('La requête a échouée.')
 
-      const { bearer_token, hash: responseHash } = response.data.data
+      const { bearer_token, hash: responseHash, role: responseRole } = response.data.data
       if (bearer_token) {
         await setToken(bearer_token)
+        role.value = responseRole ?? ''
       } else if (responseHash) {
         setHash(responseHash)
         await router.push({ name: 'a2f-code' })
@@ -152,7 +156,7 @@ export const useAuthStore = defineStore('auth', () => {
     await router.push({ name: 'login' })
   }
 
-  const register = async (credentials: AuthCredentials, router: Router) => {
+  const register = async (credentials: RegisterCredentials, router: Router) => {
     setLoading(true)
     clearError()
 
@@ -172,6 +176,7 @@ export const useAuthStore = defineStore('auth', () => {
 
   return {
     bearerToken,
+    role,
     hash,
     isLoading,
     error,
@@ -190,5 +195,5 @@ export const useAuthStore = defineStore('auth', () => {
     verifySession,
   }
 }, {
-  persist: { storage: localStorage, pick: ['bearerToken'] },
+  persist: { storage: localStorage, pick: ['bearerToken', 'role'] },
 })

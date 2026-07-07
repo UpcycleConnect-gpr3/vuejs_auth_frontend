@@ -3,6 +3,10 @@ export type AuthCredentials = {
   password: string
 }
 
+export type RegisterCredentials = AuthCredentials & {
+  role: string
+}
+
 export interface TotpLoginCredentials {
   code: string
   hash: string
@@ -12,6 +16,7 @@ export interface LoginResponse {
   bearer_token?: string
   hash?: string
   totp_required: boolean
+  role?: string
 }
 
 export interface TotpLoginResponse {
@@ -20,4 +25,9 @@ export interface TotpLoginResponse {
 
 export interface RegisterResponse {
   user_id: string
+  role?: string
+}
+
+export interface UserSelectableRolesResponse {
+  user_selectable_roles: string[]
 }
