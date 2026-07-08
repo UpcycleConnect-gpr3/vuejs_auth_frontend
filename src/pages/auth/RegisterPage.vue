@@ -1,7 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
-import type { AuthCredentials } from '@/types/auth.ts'
+import api from '@/services/api.ts'
+import type { RegisterCredentials, UserSelectableRolesResponse } from '@/types/auth.ts'
+import type { ApiResponse } from '@/types/api.ts'
 import { useAuthStore } from '@/stores/auth.ts'
 
 const showPassword = ref(false)
@@ -9,9 +11,35 @@ const authStore = useAuthStore()
 const router = useRouter()
 const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL
 
-const form = reactive<AuthCredentials>({
+// Libellés français des rôles sélectionnables ; la liste effective vient de
+// l'API (GET /roles/user-selectable/), celle-ci sert de repli hors-ligne.
+const ROLE_LABELS: Record<string, string> = {
+  professional: 'Professionnel',
+  provider: 'Particulier',
+  creator: 'Créateur',
+}
+
+const selectableRoles = ref<string[]>(Object.keys(ROLE_LABELS))
+
+const roleLabel = (role: string) => ROLE_LABELS[role] ?? role
+
+const form = reactive<RegisterCredentials>({
   email: '',
   password: '',
+  role: '',
+})
+
+onMounted(async () => {
+  try {
+    const { data } = await api.get<ApiResponse<UserSelectableRolesResponse>>(
+      '/roles/user-selectable/',
+    )
+    if (data.data.user_selectable_roles?.length) {
+      selectableRoles.value = data.data.user_selectable_roles
+    }
+  } catch {
+    // repli sur la liste locale
+  }
 })
 
 async function handleRegister() {
@@ -21,9 +49,11 @@ async function handleRegister() {
   }
 }
 
-if (authStore.isAuthenticated) {
-  window.location.href = upcycleUrl
-}
+onMounted(async () => {
+  if (await authStore.verifySession()) {
+    window.location.href = upcycleUrl
+  }
+})
 </script>
 
 <template>
@@ -53,6 +83,17 @@ if (authStore.isAuthenticated) {
           />
           <p v-if="authStore.fieldErrors.email" class="small" style="color: var(--destructive-color)">
             {{ authStore.fieldErrors.email }}
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="role">Vous êtes</label>
+          <select id="role" v-model="form.role" class="primary medium full-width" required>
+            <option value="" disabled>Choisissez votre profil…</option>
+            <option v-for="r in selectableRoles" :key="r" :value="r">{{ roleLabel(r) }}</option>
+          </select>
+          <p v-if="authStore.fieldErrors.role" class="small" style="color: var(--destructive-color)">
+            {{ authStore.fieldErrors.role }}
           </p>
         </div>
 

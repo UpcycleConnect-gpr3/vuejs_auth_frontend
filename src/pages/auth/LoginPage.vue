@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import type { AuthCredentials } from '@/types/auth.ts'
 import { useAuthStore } from '@/stores/auth.ts'
@@ -22,9 +22,11 @@ async function handleLogin() {
   }
 }
 
-if (authStore.isAuthenticated) {
-  window.location.href = upcycleUrl
-}
+onMounted(async () => {
+  if (await authStore.verifySession()) {
+    window.location.href = upcycleUrl
+  }
+})
 </script>
 
 <template>
