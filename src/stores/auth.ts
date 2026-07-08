@@ -26,10 +26,16 @@ declare const cookieStore: {
 const hasCookieStore = (): boolean =>
   typeof globalThis !== 'undefined' && 'cookieStore' in globalThis
 
+const isRealDomain = (): boolean =>
+  !!COOKIE_DOMAIN && COOKIE_DOMAIN !== 'localhost' && COOKIE_DOMAIN !== '127.0.0.1'
+
 const cookieDomainAttr = (): string => {
-  if (!COOKIE_DOMAIN || COOKIE_DOMAIN === 'localhost' || COOKIE_DOMAIN === '127.0.0.1') return ''
+  if (!isRealDomain()) return ''
   return `; domain=${COOKIE_DOMAIN}`
 }
+
+const cookieStoreOptions = () =>
+  isRealDomain() ? { domain: COOKIE_DOMAIN, path: COOKIE_PATH } : { path: COOKIE_PATH }
 
 const writeCookieFallback = (name: string, value: string) => {
   document.cookie = `${name}=${encodeURIComponent(value)}; path=${COOKIE_PATH}${cookieDomainAttr()}`
@@ -52,7 +58,7 @@ export const useAuthStore = defineStore('auth', () => {
   const setToken = async (token: string) => {
     bearerToken.value = token
     if (hasCookieStore()) {
-      await cookieStore.set(TOKEN_COOKIE_NAME, token, { domain: COOKIE_DOMAIN, path: COOKIE_PATH })
+      await cookieStore.set(TOKEN_COOKIE_NAME, token, cookieStoreOptions())
     } else {
       writeCookieFallback(TOKEN_COOKIE_NAME, token)
     }
@@ -62,7 +68,7 @@ export const useAuthStore = defineStore('auth', () => {
     bearerToken.value = ''
     role.value = ''
     if (hasCookieStore()) {
-      await cookieStore.delete(TOKEN_COOKIE_NAME, { domain: COOKIE_DOMAIN })
+      await cookieStore.delete(TOKEN_COOKIE_NAME, isRealDomain() ? { domain: COOKIE_DOMAIN } : {})
     } else {
       deleteCookieFallback(TOKEN_COOKIE_NAME)
     }
