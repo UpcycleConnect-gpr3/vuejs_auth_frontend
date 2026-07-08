@@ -135,7 +135,7 @@ export const useAuthStore = defineStore('auth', () => {
   const verifySession = async (): Promise<boolean> => {
     if (!bearerToken.value) return false
     try {
-      const response = await api.get<ApiResponse<unknown>>('/auth/me/', {
+      const response = await api.get<ApiResponse<unknown>>('/user/me/', {
         headers: { Authorization: bearerToken.value },
       })
       if (!response.data.success) throw new Error('Session invalide.')
