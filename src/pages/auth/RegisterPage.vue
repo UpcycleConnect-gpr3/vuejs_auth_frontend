@@ -14,9 +14,9 @@ const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL
 // Libellés français des rôles sélectionnables ; la liste effective vient de
 // l'API (GET /roles/user-selectable/), celle-ci sert de repli hors-ligne.
 const ROLE_LABELS: Record<string, string> = {
-  professional: 'Professionnel',
   provider: 'Particulier',
-  creator: 'Créateur',
+  professional: 'Pro / Artisan',
+  creator: 'Pro / Artisan',
 }
 
 const selectableRoles = ref<string[]>(Object.keys(ROLE_LABELS))
@@ -26,7 +26,7 @@ const roleLabel = (role: string) => ROLE_LABELS[role] ?? role
 const form = reactive<RegisterCredentials>({
   email: '',
   password: '',
-  role: '',
+  role: 'provider',
 })
 
 onMounted(async () => {
