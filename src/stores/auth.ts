@@ -23,16 +23,9 @@ declare const cookieStore: {
   delete: (name: string, options?: { domain?: string }) => Promise<void>
 }
 
-// La Cookie Store API n'existe que sur les navigateurs Chromium (Chrome/Edge).
-// Sur Firefox/Safari on retombe sur document.cookie : sans ce fallback, le cookie
-// de session n'est jamais écrit et le SSO vers le front Upcycle casse.
 const hasCookieStore = (): boolean =>
   typeof globalThis !== 'undefined' && 'cookieStore' in globalThis
 
-// localhost/127.0.0.1 : un cookie avec l'attribut Domain est rejeté par les
-// navigateurs (pas de TLD). On le pose donc en host-only — il reste partagé
-// entre tous les ports de l'hôte (donc :4284 ↔ :5173). Pour un vrai domaine
-// (prod), on conserve Domain pour le partage entre sous-domaines.
 const cookieDomainAttr = (): string => {
   if (!COOKIE_DOMAIN || COOKIE_DOMAIN === 'localhost' || COOKIE_DOMAIN === '127.0.0.1') return ''
   return `; domain=${COOKIE_DOMAIN}`
@@ -133,9 +126,6 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  // Vérifie que le token persisté est toujours accepté par l'API avant tout
-  // auto-redirect vers le front Upcycle ; resynchronise le cookie partagé si
-  // valide, purge la session sinon (token expiré, backend redémarré…).
   const verifySession = async (): Promise<boolean> => {
     if (!bearerToken.value) return false
     try {

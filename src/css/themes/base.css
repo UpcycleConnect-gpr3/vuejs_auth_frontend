@@ -1,5 +1,4 @@
 :root {
-    /* ── Palette ─────────────────────────────────────────────────────────── */
 
     --green-950: #0A1514;
     --green-900: #0F1C1A;
@@ -37,8 +36,6 @@
     --grey-500: #737373;
     --grey-700: #404040;
     --grey-800: #262626;
-
-    /* ── Semantic tokens ─────────────────────────────────────────────────── */
 
     --background-color: var(--black);
     --foreground-color: var(--white);
@@ -84,8 +81,6 @@
     --text-tertiary: oklch(from var(--white) l c h / 0.5);
     --text-disabled: oklch(from var(--white) l c h / 0.3);
 
-    /* ── Spacing scale ────────────────────────────────────────────────────── */
-
     --space-0: 0;
     --space-1: 4px;
     --space-2: 8px;
@@ -110,8 +105,6 @@
     --gap-large: var(--space-5);
     --gap-extra-large: var(--space-10);
     --gap-extra-extra-large: var(--space-16);
-
-    /* ── Typography ──────────────────────────────────────────────────────── */
 
     --font-family-base: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-family-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
@@ -149,8 +142,6 @@
     --letter-spacing-normal: -0.015em;
     --letter-spacing-loose: 0;
 
-    /* ── Sizes ───────────────────────────────────────────────────────────── */
-
     --height-small: 32px;
     --height-medium: 44px;
     --height-large: 56px;
@@ -158,8 +149,6 @@
     --width-small: 512px;
     --width-medium: 768px;
     --width-large: 896px;
-
-    /* ── Borders — NO RADIUS ─────────────────────────────────────────────── */
 
     --rounded-component: 0;
     --rounded-layout: 0;
@@ -180,8 +169,6 @@
     --outline-width-base: 2px;
     --outline-width-factor: 1px;
 
-    /* ── Component defaults ──────────────────────────────────────────────── */
-
     --width-component: auto;
     --border-width-component: 0;
     --border-style-component: none;
@@ -199,12 +186,8 @@
     --opacity-layout: 1;
     --disable-opacity-layout: 0.5;
 
-    /* ── Shadows (still flat, via layered borders) ───────────────────────── */
-
     --shadow-glow-lime: 0 0 0 1px var(--lime-500), 0 0 40px -8px oklch(from var(--lime-500) l c h / 0.4);
     --shadow-glow-purple: 0 0 0 1px var(--purple-500), 0 0 40px -8px oklch(from var(--purple-500) l c h / 0.4);
-
-    /* ── Transitions ─────────────────────────────────────────────────────── */
 
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
@@ -212,14 +195,10 @@
     --transition-base: 200ms var(--ease-out);
     --transition-slow: 400ms var(--ease-out);
 
-    /* ── Container ───────────────────────────────────────────────────────── */
-
     --container-padding-x: 1.5rem;
     --container-padding-x-lg: 2rem;
     --container-max-width: 80rem;
 }
-
-/* ── Base ────────────────────────────────────────────────────────────────── */
 
 html {
     font-size: 16px;

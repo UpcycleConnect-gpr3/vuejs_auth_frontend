@@ -71,7 +71,7 @@ async function handleVerify() {
       </form>
 
       <div class="auth-card-foot">
-        <RouterLink to="/auth/login" class="ghost small">← Retour à la connexion</RouterLink>
+        <RouterLink to="/auth/login" class="ghost small"> Retour à la connexion</RouterLink>
       </div>
     </div>
   </main>

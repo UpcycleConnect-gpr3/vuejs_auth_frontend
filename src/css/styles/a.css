@@ -17,7 +17,6 @@ a {
   --a-disabled-border-color: var(--disable-border-color);
   --a-disabled-opacity: var(--disable-opacity-component);
 
-  /* Raw link inside text */
   &:not([class]) {
     --a-text-color: var(--secondary-color);
     --a-hover-text-color: var(--lime-400);

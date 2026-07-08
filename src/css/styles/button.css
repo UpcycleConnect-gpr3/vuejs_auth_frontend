@@ -19,8 +19,6 @@ button {
     --button-disabled-border-color: var(--disable-border-color);
     --button-disabled-opacity: var(--disable-opacity-component);
 
-    /* ── Variants ─────────────────────────────────────────────────────── */
-
     &.primary {
         --button-bg-color: var(--lime-500);
         --button-text-color: var(--black);
@@ -107,8 +105,6 @@ button {
         --button-hover-text-color: var(--destructive-foreground-color);
         --button-hover-border-color: oklch(from var(--destructive-color) calc(l - 0.06) c h);
     }
-
-    /* ── Sizes ────────────────────────────────────────────────────────── */
 
     &.small {
         --button-height: var(--height-small);

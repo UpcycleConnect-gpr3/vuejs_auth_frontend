@@ -205,7 +205,6 @@ onMounted(() => {
           </button>
         </div>
 
-        <!-- Setup TOTP Modal/Section -->
         <div v-if="showTotpSetup" class="totp-setup">
           <div class="totp-qrcode">
             <p class="medium">Scannez ce QR code avec votre application d'authentification :</p>

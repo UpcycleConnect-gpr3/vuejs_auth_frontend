@@ -53,7 +53,7 @@ function handleForgotPassword() {
 
       <div class="auth-card-foot">
         <p class="small muted center">
-          <RouterLink to="/auth/login" class="ghost" style="display: inline; padding: 0;">← Retour à la connexion</RouterLink>
+          <RouterLink to="/auth/login" class="ghost" style="display: inline; padding: 0;"> Retour à la connexion</RouterLink>
         </p>
       </div>
     </div>

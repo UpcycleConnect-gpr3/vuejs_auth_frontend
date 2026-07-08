@@ -51,8 +51,6 @@ div#app {
     align-items: stretch;
 }
 
-/* ── Layout primitives ─────────────────────────────────────────────────── */
-
 .layout-app { width: 100%; min-height: 100vh; display: flex; flex-direction: row; align-items: stretch; }
 .layout-small { width: var(--width-small); }
 .layout-medium { width: var(--width-medium); }
@@ -86,8 +84,6 @@ div#app {
         padding-inline: var(--container-padding-x-lg);
     }
 }
-
-/* ── Utilities ─────────────────────────────────────────────────────────── */
 
 ul, ol { list-style: none; }
 
@@ -145,8 +141,6 @@ ul, ol { list-style: none; }
 
 .mono { font-variant-numeric: tabular-nums; }
 
-/* ── Auth shell — split layout, left panel + right form ────────────────── */
-
 .auth-shell {
     width: 100%;
     min-height: 100vh;
@@ -163,7 +157,6 @@ ul, ol { list-style: none; }
     }
 }
 
-/* Left brand panel — full bleed green with pattern */
 .auth-shell::before {
     content: '';
     display: none;
@@ -181,7 +174,6 @@ ul, ol { list-style: none; }
     .auth-shell::before { display: block; }
 }
 
-/* Form right side */
 .auth-card {
     position: relative;
     width: 100%;
@@ -243,7 +235,6 @@ ul, ol { list-style: none; }
     border-top: 1px solid var(--border-color);
 }
 
-/* Inline link inside paragraphs */
 .auth-card-foot a,
 .auth-card a.inline {
     color: var(--lime-500);
@@ -299,7 +290,6 @@ ul, ol { list-style: none; }
     color: var(--foreground-color);
 }
 
-/* OTP single input — 6 chiffres */
 .otp-single {
     text-align: center;
     font-size: var(--font-size-xxxlarge) !important;
@@ -323,7 +313,6 @@ ul, ol { list-style: none; }
     color: var(--lime-500) !important;
 }
 
-/* Resend row */
 .resend-row {
     display: flex;
     align-items: center;
@@ -354,8 +343,6 @@ ul, ol { list-style: none; }
     text-decoration: underline;
     text-underline-offset: 3px;
 }
-
-/* ── Settings layout ───────────────────────────────────────────────────── */
 
 .settings-shell {
     display: grid;
@@ -493,8 +480,6 @@ ul, ol { list-style: none; }
 
 .sidebar-user-action svg { width: 16px; height: 16px; }
 
-/* ── Settings main content ─────────────────────────────────────────────── */
-
 .settings-main {
     display: flex;
     flex-direction: column;
@@ -561,8 +546,6 @@ ul, ol { list-style: none; }
     border-top: 1px solid var(--border-color);
 }
 
-/* ── Setting row (toggle rows etc.) ────────────────────────────────────── */
-
 .setting-row {
     display: flex;
     align-items: center;
@@ -581,8 +564,6 @@ ul, ol { list-style: none; }
     border-color: oklch(from var(--destructive-color) l c h / 0.3);
     background-color: oklch(from var(--destructive-color) l c h / 0.05);
 }
-
-/* ── Toggle switch ─────────────────────────────────────────────────────── */
 
 .toggle {
     position: relative;
@@ -635,8 +616,6 @@ ul, ol { list-style: none; }
     cursor: not-allowed;
 }
 
-/* ── Avatar placeholder (Profile big) ──────────────────────────────────── */
-
 .avatar-placeholder {
     width: 80px;
     height: 80px;
@@ -652,8 +631,6 @@ ul, ol { list-style: none; }
     flex-shrink: 0;
 }
 
-/* ── Avatar small (tables) ─────────────────────────────────────────────── */
-
 .avatar {
     width: 36px; height: 36px;
     background-color: var(--green-700);
@@ -664,8 +641,6 @@ ul, ol { list-style: none; }
     color: var(--lime-500);
     flex-shrink: 0;
 }
-
-/* ── Table ─────────────────────────────────────────────────────────────── */
 
 .table-wrapper {
     width: 100%;
@@ -691,8 +666,6 @@ ul, ol { list-style: none; }
 .table-wrapper tbody tr:last-child td { border-bottom: none; }
 .table-wrapper tbody tr:hover { background-color: var(--green-700); }
 
-/* ── Plan card (billing) ───────────────────────────────────────────────── */
-
 .plan-card {
     padding: var(--space-6);
     background-color: var(--green-800);
@@ -708,8 +681,6 @@ ul, ol { list-style: none; }
     line-height: 1;
 }
 .plan-price-unit { font-size: var(--font-size-medium); color: var(--text-tertiary); }
-
-/* ── Badge ─────────────────────────────────────────────────────────────── */
 
 .badge {
     display: inline-flex;
@@ -729,8 +700,6 @@ ul, ol { list-style: none; }
 .badge--danger { border-color: var(--destructive-color); color: var(--destructive-color); }
 .badge--accent { border-color: var(--accent-color); color: var(--accent-color); background-color: oklch(from var(--accent-color) l c h / 0.08); }
 
-/* ── Icon box ──────────────────────────────────────────────────────────── */
-
 .icon-box {
     width: 44px; height: 28px;
     background-color: oklch(from var(--lime-500) l c h / 0.12);
@@ -738,8 +707,6 @@ ul, ol { list-style: none; }
     display: inline-flex; align-items: center; justify-content: center;
     border: 1px solid oklch(from var(--lime-500) l c h / 0.25);
 }
-
-/* ── Button destructive variant for auth ───────────────────────────────── */
 
 button.destructive {
     --button-bg-color: var(--destructive-color);

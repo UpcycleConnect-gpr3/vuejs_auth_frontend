@@ -11,8 +11,6 @@ const authStore = useAuthStore()
 const router = useRouter()
 const upcycleUrl = import.meta.env.VITE_UPCYCLE_URL
 
-// Libellés français des rôles sélectionnables ; la liste effective vient de
-// l'API (GET /roles/user-selectable/), celle-ci sert de repli hors-ligne.
 const ROLE_LABELS: Record<string, string> = {
   provider: 'Particulier',
   professional: 'Pro / Artisan',
@@ -38,7 +36,7 @@ onMounted(async () => {
       selectableRoles.value = data.data.user_selectable_roles
     }
   } catch {
-    // repli sur la liste locale
+
   }
 })
 
